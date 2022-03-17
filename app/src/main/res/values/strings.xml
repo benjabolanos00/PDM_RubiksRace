@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Practica3</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="cuadro0_de_scrambler">cuadro0 de scrambler</string>
+    <string name="cuadro1_de_scrambler">cuadro1 de scrambler</string>
+    <string name="cuadro2_de_scrambler">cuadro2 de scrambler</string>
+    <string name="cuadro3_de_scrambler">cuadro3 de scrambler</string>
+    <string name="cuadro4_de_scrambler">cuadro4 de scrambler</string>
+    <string name="cuadro5_de_scrambler">cuadro5 de scrambler</string>
+    <string name="cuadro6_de_scrambler">cuadro6 de scrambler</string>
+    <string name="cuadro7_de_scrambler">cuadro7 de scrambler</string>
+    <string name="cuadro8_de_scrambler">cuadro8 de scrambler</string>
+
+    <string name="scramble">SCRAMBLE!</string>
+</resources>

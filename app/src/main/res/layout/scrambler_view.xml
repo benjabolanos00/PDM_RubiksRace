@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A8C588"
+    tools:context=".Scrambler">
+
+    <ImageView
+        android:id="@+id/cuadro4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/cuadro4_de_scrambler"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.413"
+        app:srcCompat="@drawable/cuadro_azul" />
+
+    <ImageView
+        android:id="@+id/cuadro1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/cuadro1_de_scrambler"
+        app:layout_constraintBottom_toTopOf="@+id/cuadro4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/cuadro_amarillo" />
+
+    <Button
+        android:id="@+id/btnScramble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:backgroundTint="#083578"
+        android:text="@string/scramble"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:iconTint="#713030"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cuadro7" />
+
+    <ImageView
+        android:id="@+id/cuadro7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/cuadro7_de_scrambler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cuadro4"
+        app:srcCompat="@drawable/cuadro_blanco" />
+
+    <ImageView
+        android:id="@+id/cuadro8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/cuadro8_de_scrambler"
+        app:layout_constraintStart_toEndOf="@+id/cuadro7"
+        app:layout_constraintTop_toBottomOf="@+id/cuadro5"
+        app:srcCompat="@drawable/cuadro_naranja" />
+
+    <ImageView
+        android:id="@+id/cuadro2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/cuadro2_de_scrambler"
+        app:layout_constraintBottom_toTopOf="@+id/cuadro5"
+        app:layout_constraintStart_toEndOf="@+id/cuadro1"
+        app:srcCompat="@drawable/cuadro_blanco" />
+
+    <ImageView
+        android:id="@+id/cuadro0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/cuadro0_de_scrambler"
+        app:layout_constraintBottom_toTopOf="@+id/cuadro3"
+        app:layout_constraintEnd_toStartOf="@+id/cuadro1"
+        app:srcCompat="@drawable/cuadro_verde" />
+
+    <ImageView
+        android:id="@+id/cuadro5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/cuadro5_de_scrambler"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cuadro4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.413"
+        app:srcCompat="@drawable/cuadro_rojo" />
+
+    <ImageView
+        android:id="@+id/cuadro3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/cuadro3_de_scrambler"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cuadro4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.413"
+        app:srcCompat="@drawable/cuadro_naranja" />
+
+    <ImageView
+        android:id="@+id/cuadro6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/cuadro6_de_scrambler"
+        app:layout_constraintEnd_toStartOf="@+id/cuadro7"
+        app:layout_constraintTop_toBottomOf="@+id/cuadro3"
+        app:srcCompat="@drawable/cuadro_verde" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
