@@ -13,5 +13,8 @@
     <string name="cuadro7_de_scrambler">cuadro7 de scrambler</string>
     <string name="cuadro8_de_scrambler">cuadro8 de scrambler</string>
 
+    <string name="cuadro_de_grid"> Cuadro de Grid de Jugador</string>
     <string name="scramble">SCRAMBLE!</string>
+    <string name="rubik_s_race">Rubik\'s Race!</string>
+    <string name="scramblergrid">ScramblerGrid</string>
 </resources>
