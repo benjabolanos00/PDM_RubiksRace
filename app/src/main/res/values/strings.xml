@@ -17,4 +17,6 @@
     <string name="scramble">SCRAMBLE!</string>
     <string name="rubik_s_race">Rubik\'s Race!</string>
     <string name="scramblergrid">ScramblerGrid</string>
+    <string name="juego_nuevo">Juego Nuevo</string>
+    <string name="slam">SLAM!</string>
 </resources>

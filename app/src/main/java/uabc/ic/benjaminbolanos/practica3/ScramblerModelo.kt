@@ -1,25 +1,39 @@
 package uabc.ic.benjaminbolanos.practica3
 
-class ScramblerModelo(){
-    private var dados: Array<Dado> = Array(9){Dado()}
-    private val combinacion : Array<Color> = Array(9){Color()}
+class ScramblerModelo() {
+    private var dados: Array<Dado> = Array(9) { Dado() }
+    private val combinacion: Array<Color> = Array(9) { Color() }
 
+    /**
+     * Constructor que manda a llamar al método scramble() para crear una nueva combinación.
+     */
     init {
         scramble()
     }
 
-    fun scramble(){
-        for(dado in dados){
-            dado.tirar()
+    /**
+     * Método scramble que lanza los 9 dados. No permite que las caras visibles de los dados
+     * tengan más de cuatro colores iguales.
+     */
+    fun scramble() {
+        val contadoresColores: Array<Int> = Array(6) { 0 }
+        var i = 0
+        while (i < 9) {
+            dados[i].tirar()
+            if (contadoresColores[dados[i].getCaraInt()] > 3) {
+                i--
+            }
+            i++
         }
     }
 
-    fun getCombinacion():Array<Color>{
-        for(i in 0..8){
+    /**
+     * Método que consigue la combinación actual de colores y la retorna.
+     */
+    fun getCombinacion(): Array<Color> {
+        for (i in 0..8) {
             combinacion[i] = dados[i].getCaraVisible()
         }
         return combinacion
     }
-
-
 }
