@@ -1,5 +1,6 @@
 package uabc.ic.benjaminbolanos.practica3
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -193,7 +194,7 @@ class RubiksRace : AppCompatActivity() {
     fun slamFrame(view:View){
         if(checkWinner()){
             cronometro.parar()
-            ext.highscores.add(Highscore(cronometro.getTiempo()))
+            ext.highscores.add(Highscore(cronometro.getTiempo(), gridModelo.movimientos, scramblerModel.getCombinacion()))
             if(ext.highscores[ext.highscores.size-1].isHighestScore()){
                 Toast.makeText(applicationContext,"FELICIDADES! HAS GANADO EN $cronometro! NUEVO RECORD!", Toast.LENGTH_LONG).show()
             } else {
@@ -214,5 +215,10 @@ class RubiksRace : AppCompatActivity() {
         gridModelo.crearGrid()
         updateGrid()
         cronometro.iniciar()
+    }
+
+    fun irHaciaHighscores(view: View){
+        val intent = Intent(this, Highscores::class.java)
+        startActivity(intent)
     }
 }

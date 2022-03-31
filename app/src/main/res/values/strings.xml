@@ -19,4 +19,5 @@
     <string name="scramblergrid">ScramblerGrid</string>
     <string name="juego_nuevo">Juego Nuevo</string>
     <string name="slam">SLAM!</string>
+    <string name="highscores">Highscores</string>
 </resources>

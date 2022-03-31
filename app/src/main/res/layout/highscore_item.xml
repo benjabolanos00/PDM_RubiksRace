@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/highscore_item_combinacion_1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/cuadro_amarillo"/>
+
+    <ImageView
+        android:id="@+id/highscore_item_combinacion_2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toEndOf="@+id/highscore_item_combinacion_1"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/cuadro_azul"/>
+
+    <ImageView
+        android:id="@+id/highscore_item_combinacion_3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toEndOf="@+id/highscore_item_combinacion_2"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/cuadro_blanco"/>
+
+    <ImageView
+        android:id="@+id/highscore_item_combinacion_4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_1"
+        android:background="@drawable/cuadro_naranja"/>
+
+    <ImageView
+        android:id="@+id/highscore_item_combinacion_5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_4"
+        app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_2"
+        android:background="@drawable/cuadro_verde"/>
+
+    <ImageView
+        android:id="@+id/highscore_item_combinacion_6"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_5"
+        app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_3"
+        android:background="@drawable/cuadro_rojo"/>
+
+    <ImageView
+        android:id="@+id/highscore_item_combinacion_7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_4"
+        android:background="@drawable/cuadro_azul"/>
+
+    <ImageView
+        android:id="@+id/highscore_item_combinacion_8"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_7"
+        app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_5"
+        android:background="@drawable/cuadro_blanco"/>
+
+    <ImageView
+        android:id="@+id/highscore_item_combinacion_9"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_8"
+        app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_6"
+        android:background="@drawable/cuadro_amarillo"/>
+
+    <TextView
+        android:id="@+id/highscore_item_tiempo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00:00"
+        app:layout_constraintBottom_toBottomOf="@id/highscore_item_combinacion_3"
+        app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_6"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/highscore_item_movimientos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00 Movimientos"
+        app:layout_constraintTop_toBottomOf="@id/highscore_item_tiempo"
+        app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_6"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="16sp"/>
+
+    <Button
+        android:id="@+id/highscore_item_eliminar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#D33333"
+        android:text="Eliminar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_9"
+        app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_6" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

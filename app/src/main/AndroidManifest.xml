@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Practica3">
         <activity
-            android:name=".Scrambler"
+            android:name=".Highscores"
             android:exported="false" />
         <activity
             android:name=".RubiksRace"

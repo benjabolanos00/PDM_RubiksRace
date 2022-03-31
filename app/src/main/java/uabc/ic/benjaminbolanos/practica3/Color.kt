@@ -29,27 +29,27 @@ class Color() {
         when(Random.nextInt(0,6)){
             0 -> {
                 this.nombre = "azul"
-                this.valor = BLUE
+                this.valor = R.drawable.cuadro_azul
             }
             1 -> {
                 this.nombre = "rojo"
-                this.valor = RED
+                this.valor = R.drawable.cuadro_rojo
             }
             2 -> {
                 this.nombre = "verde"
-                this.valor = GREEN
+                this.valor = R.drawable.cuadro_verde
             }
             3 -> {
                 this.nombre = "amarillo"
-                this.valor = YELLOW
+                this.valor = R.drawable.cuadro_amarillo
             }
             4 -> {
                 this.nombre = "blanco"
-                this.valor = WHITE
+                this.valor = R.drawable.cuadro_blanco
             }
             5 -> {
                 this.nombre = "naranja"
-                this.valor = rgb(255,155,0)
+                this.valor = R.drawable.cuadro_naranja
             }
 
         }
@@ -62,13 +62,13 @@ class Color() {
     private fun fromName(name:String) : Color {
         this.nombre = name.lowercase()
         when(name){
-            "azul" -> this.valor = BLUE
-            "rojo" -> this.valor = RED
-            "verde" -> this.valor = GREEN
-            "amarillo" ->  this.valor = YELLOW
-            "blanco" -> this.valor = WHITE
-            "naranja" ->  this.valor = rgb(255,155,0)
-            "negro" -> this.valor = BLACK
+            "azul" -> this.valor = R.drawable.cuadro_azul
+            "rojo" -> this.valor = R.drawable.cuadro_rojo
+            "verde" -> this.valor = R.drawable.cuadro_verde
+            "amarillo" ->  this.valor = R.drawable.cuadro_amarillo
+            "blanco" -> this.valor = R.drawable.cuadro_blanco
+            "naranja" ->  this.valor = R.drawable.cuadro_naranja
+            "negro" -> this.valor = R.drawable.cuadro_negro
         }
         return this
     }

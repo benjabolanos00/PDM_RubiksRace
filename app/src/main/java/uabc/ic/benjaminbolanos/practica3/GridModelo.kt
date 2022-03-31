@@ -10,6 +10,7 @@ class GridModelo {
     private val cuadros:Array<Color> = Array(25){Color()}
     private val colores:Array<Color> = arrayOf(Color("azul"), Color("rojo"), Color("verde"),
             Color("amarillo"), Color("blanco"), Color("naranja"))
+    var movimientos:Int = 0
 
     /**
      * Constructor que manda a crear un nuevo grid.
@@ -47,6 +48,7 @@ class GridModelo {
             val aux = cuadros[hacia]
             cuadros[hacia] = cuadros[desde]
             cuadros[desde] = aux
+            movimientos++
         }
 
         return intercambiable
@@ -57,6 +59,7 @@ class GridModelo {
      * más de 4 veces el mismo color. En el ultimo cuadro, pone su color como negro.
      */
     fun crearGrid(){
+        movimientos = 0
         var i = 0
         val contadoresColores:Array<Int> = Array(6){0}
 
