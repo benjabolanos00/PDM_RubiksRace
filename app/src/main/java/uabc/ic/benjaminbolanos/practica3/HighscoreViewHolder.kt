@@ -20,8 +20,5 @@ class HighscoreViewHolder(view: View): RecyclerView.ViewHolder(view){
         }
         highscoreTiempo.text = highscoreItem.tiempoString()
         highscoreMovimientos.text = StringBuffer("${highscoreItem.movimientos} Movimientos")
-        eliminarButton.setOnClickListener {
-            ext.highscores.remove(highscoreItem)
-        }
     }
 }
