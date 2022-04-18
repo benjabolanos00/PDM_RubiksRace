@@ -8,18 +8,25 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import uabc.ic.benjaminbolanos.practica3.grid.GridModelo
+import uabc.ic.benjaminbolanos.practica3.highscores.Highscores
+import uabc.ic.benjaminbolanos.practica3.scrambler.ScramblerModelo
+import uabc.ic.benjaminbolanos.practica3.util.Color
+import uabc.ic.benjaminbolanos.practica3.util.Cronometro
+import uabc.ic.benjaminbolanos.practica3.highscores.Highscore
+import uabc.ic.benjaminbolanos.practica3.highscores.ext
 
-class RubiksRace : AppCompatActivity() {
+class RubiksRace() : AppCompatActivity() {
 
     //ScramblerModel
-    private var scramblerModel = ScramblerModelo()
+    private lateinit var scramblerModel: ScramblerModelo
 
     //ScramblerView
     private var scramblerView: ArrayList<ImageView> = ArrayList(9)
     private lateinit var scrambleButton: Button
 
     //GridModel
-    private var gridModelo: GridModelo = GridModelo()
+    private lateinit var gridModelo: GridModelo
 
     //GridView
     private var gridView: ArrayList<ImageView> = ArrayList(25)
@@ -27,17 +34,27 @@ class RubiksRace : AppCompatActivity() {
     private var grid2:Int = -1
 
     //Cronometro
-    val cronometro = Cronometro()
+    private val cronometro = Cronometro()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.i("EXITO", "MAIN ACTIVADO CON EXITO")
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_rubiksrace)
+        setModoDaltonico()
         iniciarScramblerView()
         iniciarGridView()
         updateScrambler()
         updateGrid()
         cronometro.iniciar()
+    }
+
+    fun setModoDaltonico(){
+        val bundle = intent.extras
+        var modoDaltonico = false
+        if(bundle != null){
+            modoDaltonico = bundle.getBoolean("ColorBlindMode")
+        }
+        scramblerModel = ScramblerModelo(modoDaltonico)
+        gridModelo = GridModelo(modoDaltonico)
     }
 
     /**
@@ -83,7 +100,7 @@ class RubiksRace : AppCompatActivity() {
         scrambleButton.setOnClickListener{
             cronometro.parar()
             scramblerModel.scramble()
-            updateScramblerView(scramblerModel.getCombinacion())
+            updateScrambler()
             Log.i("SCRAMBLER","SCRAMBLE!!")
             cronometro.iniciar()
         }
@@ -95,7 +112,7 @@ class RubiksRace : AppCompatActivity() {
      */
     fun updateGridView(newGrid:Array<Color>){
         for(i in 0..24){
-            gridView[i].setImageResource(getImgFromName(newGrid[i].getNombre()))
+            gridView[i].setImageResource(newGrid[i].valor)
         }
     }
 
@@ -105,7 +122,7 @@ class RubiksRace : AppCompatActivity() {
      */
     fun updateScramblerView(newScramble:Array<Color>){
         for(i in 0..8){
-            scramblerView[i].setImageResource(getImgFromName(newScramble[i].getNombre()))
+            scramblerView[i].setImageResource(newScramble[i].valor)
         }
     }
 
@@ -126,36 +143,11 @@ class RubiksRace : AppCompatActivity() {
     }
 
     /**
-     * Método que recibe el nombre de un color y retorna la imagen del cuadro de ese color.
-     * Si no recibe un nombre de los 6 colores disponibles, retorna el cuadro negro.
-     */
-    private fun getImgFromName(name:String):Int{
-        return when(name){
-            "azul" -> R.drawable.cuadro_azul
-            "rojo" -> R.drawable.cuadro_rojo
-            "verde" -> R.drawable.cuadro_verde
-            "amarillo" -> R.drawable.cuadro_amarillo
-            "blanco" -> R.drawable.cuadro_blanco
-            "naranja" -> R.drawable.cuadro_naranja
-            else -> R.drawable.cuadro_negro
-        }
-    }
-
-    /**
      * Método que recibe el nombre de un color y retorna la imagen del cuadro seleccionado de ese color.
      * Si no recibe un nombre de los 6 colores disponibles, retorna el cuadro seleccionado negro.
      */
     fun selectGrid(i:Int){
-        val id = when(gridModelo.getGrid()[i].getNombre()){
-            "azul" -> R.drawable.cuadro_azul_selected
-            "rojo" -> R.drawable.cuadro_rojo_selected
-            "verde" -> R.drawable.cuadro_verde_selected
-            "amarillo" -> R.drawable.cuadro_amarillo_selected
-            "blanco" -> R.drawable.cuadro_blanco_selected
-            "naranja" -> R.drawable.cuadro_naranja_selected
-            else -> R.drawable.cuadro_negro_selected
-        }
-        gridView[i].setImageResource(id)
+        gridView[i].setImageResource(gridModelo.selectCuadro(i))
     }
 
     /**
@@ -180,7 +172,7 @@ class RubiksRace : AppCompatActivity() {
         val gridCentro = gridModelo.getCentro()
         val scramblerComb = scramblerModel.getCombinacion()
         for(i in 0..8){
-            if(gridCentro[i].getNombre() != scramblerComb[i].getNombre()){
+            if(gridCentro[i].nombre != scramblerComb[i].nombre){
                 return false
             }
         }
@@ -195,11 +187,16 @@ class RubiksRace : AppCompatActivity() {
         if(checkWinner()){
             cronometro.parar()
             ext.highscores.add(Highscore(cronometro.getTiempo(), gridModelo.movimientos, scramblerModel.getCombinacion()))
+            val intent = Intent(this, Winner::class.java)
             if(ext.highscores[ext.highscores.size-1].isHighestScore()){
+                intent.putExtra("NewRecord", true)
                 Toast.makeText(applicationContext,"FELICIDADES! HAS GANADO EN $cronometro! NUEVO RECORD!", Toast.LENGTH_LONG).show()
             } else {
+                intent.putExtra("NewRecord", false)
                 Toast.makeText(applicationContext,"FELICIDADES! HAS GANADO EN $cronometro!", Toast.LENGTH_LONG).show()
             }
+            finish()
+            startActivity(intent)
         } else {
             Toast.makeText(applicationContext,"Vaya, parece que no has ganado aun :(", Toast.LENGTH_SHORT).show()
         }
@@ -208,7 +205,7 @@ class RubiksRace : AppCompatActivity() {
     /**
      * Método para el boton Nuevo Juego. Reinicia el cronometro, el scrambler y el grid.
      */
-    fun crearNuevoJuego(view: View){
+    fun crearNuevoJuego(view: View?){
         cronometro.parar()
         scramblerModel.scramble()
         updateScrambler()

@@ -20,4 +20,12 @@
     <string name="juego_nuevo">Juego Nuevo</string>
     <string name="slam">SLAM!</string>
     <string name="highscores">Highscores</string>
+    <string name="main_menu_new_game">Nuevo Juego</string>
+    <string name="main_menu_colorblind_text">Modo Daltonico</string>
+    <string name="main_menu_highscores">Highscores</string>
+    <string name="winner_felicidades">¡FELICIDADES!</string>
+    <string name="winner_time_tag">Has ganado en</string>
+    <string name="winner_time_holder">00:00:00</string>
+    <string name="winner_newrecord">¡NUEVO RECORD!</string>
+    <string name="winner_moves_holder">00 Movimientos</string>
 </resources>

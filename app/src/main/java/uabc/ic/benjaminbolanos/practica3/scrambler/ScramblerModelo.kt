@@ -1,7 +1,10 @@
-package uabc.ic.benjaminbolanos.practica3
+package uabc.ic.benjaminbolanos.practica3.scrambler
 
-class ScramblerModelo() {
-    private var dados: Array<Dado> = Array(9) { Dado() }
+import uabc.ic.benjaminbolanos.practica3.util.Color
+import uabc.ic.benjaminbolanos.practica3.util.Dado
+
+class ScramblerModelo(var modoDaltonico: Boolean) {
+    private var dados: Array<Dado> = Array(9) { Dado(modoDaltonico) }
     private var combinacion: Array<Color> = Array(9) { Color() }
     
 
@@ -17,13 +20,16 @@ class ScramblerModelo() {
      * tengan más de cuatro colores iguales.
      */
     fun scramble() {
-        dados = Array(9){ Dado() }
+        dados = Array(9) { Dado(modoDaltonico) }
         val contadoresColores: Array<Int> = Array(6) { 0 }
         var i = 0
         while (i < 9) {
             dados[i].tirar()
-            if (contadoresColores[dados[i].getCaraInt()] > 3) {
+            if (contadoresColores[dados[i].getCaraInt()] >= 4) {
                 i--
+            } else {
+                contadoresColores[dados[i].getCaraInt()]++
+                combinacion[i] = dados[i].getCaraVisible()
             }
             i++
         }
@@ -33,10 +39,6 @@ class ScramblerModelo() {
      * Método que consigue la combinación actual de colores y la retorna.
      */
     fun getCombinacion(): Array<Color> {
-        combinacion = Array(9){ Color() }
-        for (i in 0..8) {
-            combinacion[i] = dados[i].getCaraVisible()
-        }
         return combinacion
     }
 }

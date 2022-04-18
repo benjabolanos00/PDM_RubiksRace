@@ -1,14 +1,16 @@
-package uabc.ic.benjaminbolanos.practica3
-
-import kotlin.random.Random
+package uabc.ic.benjaminbolanos.practica3.util
 
 /**
  * Clase Dado que modela un dado de seis lados. Cada lado es un color distinto.
  */
-class Dado() {
-    private val colores:Array<Color> = arrayOf(Color("azul"), Color("rojo"), Color("verde"),
-        Color("amarillo"), Color("blanco"), Color("naranja"))
-    private var caraVisible:Color
+class Dado(modoDaltonico: Boolean) {
+    private val colores:Array<Color> = arrayOf(
+        Color("azul", modoDaltonico),
+        Color("rojo", modoDaltonico), Color("verde", modoDaltonico),
+        Color("amarillo", modoDaltonico), Color("blanco", modoDaltonico),
+        Color("naranja", modoDaltonico)
+    )
+    private var caraVisible: Color
     private var caraInt:Int = 0
 
     /**
@@ -22,8 +24,9 @@ class Dado() {
      * Función tirar que genera un numero aleatorio y ,dependiendo de ese numero, se agarra un Color
      * del array de colores. Retorna el nuevo color/cara visible.
      */
-    fun tirar():Color{
-        caraInt = Random.nextInt(0,6)
+    fun tirar(): Color {
+        val rand = java.util.Random()
+        caraInt = rand.nextInt(6)
         caraVisible = colores[caraInt]
         return caraVisible
     }

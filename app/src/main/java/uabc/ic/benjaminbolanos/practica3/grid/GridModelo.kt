@@ -1,15 +1,18 @@
-package uabc.ic.benjaminbolanos.practica3
+package uabc.ic.benjaminbolanos.practica3.grid
 
-import android.util.Log
-import kotlin.random.Random
+import uabc.ic.benjaminbolanos.practica3.util.Color
 
 /**
  * Clase GridModelo que modela un grid de un jugador de RubiksRace.
  */
-class GridModelo {
-    private val cuadros:Array<Color> = Array(25){Color()}
-    private val colores:Array<Color> = arrayOf(Color("azul"), Color("rojo"), Color("verde"),
-            Color("amarillo"), Color("blanco"), Color("naranja"))
+class GridModelo(modoDaltonico: Boolean) {
+    private val cuadros:Array<Color> = Array(25){ Color() }
+    private val colores:Array<Color> = arrayOf(
+        Color("azul", modoDaltonico),
+        Color("rojo", modoDaltonico), Color("verde", modoDaltonico),
+        Color("amarillo", modoDaltonico), Color("blanco", modoDaltonico),
+        Color("naranja", modoDaltonico)
+    )
     var movimientos:Int = 0
 
     /**
@@ -28,7 +31,7 @@ class GridModelo {
      */
     fun intercambiar(desde:Int, hacia:Int):Boolean{
         var intercambiable = false
-        if(cuadros[hacia].getValor() == Color("negro").getValor()){
+        if(cuadros[hacia].nombre == "negro"){
             if(desde % 5 == 0) {
                 if (hacia == (desde - 5) || hacia == (desde + 1) || hacia == (desde + 5)) {
                     intercambiable = true
@@ -62,9 +65,9 @@ class GridModelo {
         movimientos = 0
         var i = 0
         val contadoresColores:Array<Int> = Array(6){0}
-
+        val rand = java.util.Random()
         while(i < 24){
-            val intRandom = Random.nextInt(0,6)
+            val intRandom = rand.nextInt(6)
             if(contadoresColores[intRandom] >= 4){
                 i--
             } else {
@@ -72,10 +75,8 @@ class GridModelo {
                 contadoresColores[intRandom]++
             }
             i++
-            Log.i("EXITO", "index: $i / ")
         }
-
-        cuadros[i] = Color("negro")
+        cuadros[i] = Color("negro", colorBlind = false)
     }
 
     /**
@@ -93,7 +94,7 @@ class GridModelo {
      */
     fun getCentro():Array<Color>{
         var j = 0
-        val centro:Array<Color> = Array(9){Color()}
+        val centro:Array<Color> = Array(9){ Color() }
         for(i in 0..24){
             if(i in 6..18 && i%5!=0 && (i+1)%5!=0){
                 centro[j] = cuadros[i]
@@ -101,6 +102,10 @@ class GridModelo {
             }
         }
         return centro
+    }
+
+    fun selectCuadro(i: Int): Int{
+        return cuadros[i].getSelected()
     }
 
 }
