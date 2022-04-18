@@ -1,6 +1,6 @@
-package uabc.ic.benjaminbolanos.practica3.util
+package uabc.ic.benjaminbolanos.rubiksrace.util
 
-import uabc.ic.benjaminbolanos.practica3.R
+import uabc.ic.benjaminbolanos.rubiksrace.R
 import kotlin.random.Random
 
 class Color() {

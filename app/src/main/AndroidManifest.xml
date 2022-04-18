@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="uabc.ic.benjaminbolanos.practica3">
+    package="uabc.ic.benjaminbolanos.rubiksrace">
 
     <application
         android:allowBackup="true"
@@ -10,11 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Practica3">
         <activity
-            android:name=".Winner"
+            android:name="uabc.ic.benjaminbolanos.rubiksrace.Winner"
             android:exported="false"
-            android:parentActivityName=".MainMenu"/>
+            android:parentActivityName="uabc.ic.benjaminbolanos.rubiksrace.MainMenu"/>
         <activity
-            android:name=".MainMenu"
+            android:name="uabc.ic.benjaminbolanos.rubiksrace.MainMenu"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,11 +22,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".highscores.Highscores"
+            android:name="uabc.ic.benjaminbolanos.rubiksrace.highscores.Highscores"
             android:exported="false"
-            android:parentActivityName=".MainMenu"/>
+            android:parentActivityName="uabc.ic.benjaminbolanos.rubiksrace.MainMenu"/>
         <activity
-            android:name=".RubiksRace"
+            android:name="uabc.ic.benjaminbolanos.rubiksrace.RubiksRace"
             android:exported="false">
         </activity>
     </application>

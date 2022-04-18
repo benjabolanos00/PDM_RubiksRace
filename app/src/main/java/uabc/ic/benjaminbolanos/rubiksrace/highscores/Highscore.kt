@@ -1,6 +1,6 @@
-package uabc.ic.benjaminbolanos.practica3.highscores
+package uabc.ic.benjaminbolanos.rubiksrace.highscores
 
-import uabc.ic.benjaminbolanos.practica3.util.Color
+import uabc.ic.benjaminbolanos.rubiksrace.util.Color
 import kotlin.math.roundToInt
 import kotlin.random.Random
 

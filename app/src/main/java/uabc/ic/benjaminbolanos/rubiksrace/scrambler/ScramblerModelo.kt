@@ -1,7 +1,7 @@
-package uabc.ic.benjaminbolanos.practica3.scrambler
+package uabc.ic.benjaminbolanos.rubiksrace.scrambler
 
-import uabc.ic.benjaminbolanos.practica3.util.Color
-import uabc.ic.benjaminbolanos.practica3.util.Dado
+import uabc.ic.benjaminbolanos.rubiksrace.util.Color
+import uabc.ic.benjaminbolanos.rubiksrace.util.Dado
 
 class ScramblerModelo(var modoDaltonico: Boolean) {
     private var dados: Array<Dado> = Array(9) { Dado(modoDaltonico) }

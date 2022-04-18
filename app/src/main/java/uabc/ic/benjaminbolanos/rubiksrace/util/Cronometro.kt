@@ -1,4 +1,4 @@
-package uabc.ic.benjaminbolanos.practica3.util
+package uabc.ic.benjaminbolanos.rubiksrace.util
 
 import java.util.*
 import kotlin.math.roundToInt

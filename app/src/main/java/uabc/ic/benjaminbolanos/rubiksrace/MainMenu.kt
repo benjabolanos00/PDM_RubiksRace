@@ -1,11 +1,11 @@
-package uabc.ic.benjaminbolanos.practica3
+package uabc.ic.benjaminbolanos.rubiksrace
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SwitchCompat
-import uabc.ic.benjaminbolanos.practica3.highscores.Highscores
+import uabc.ic.benjaminbolanos.rubiksrace.highscores.Highscores
 
 class MainMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,6 +1,6 @@
-package uabc.ic.benjaminbolanos.practica3.grid
+package uabc.ic.benjaminbolanos.rubiksrace.grid
 
-import uabc.ic.benjaminbolanos.practica3.util.Color
+import uabc.ic.benjaminbolanos.rubiksrace.util.Color
 
 /**
  * Clase GridModelo que modela un grid de un jugador de RubiksRace.

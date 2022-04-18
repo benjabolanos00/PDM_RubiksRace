@@ -1,10 +1,10 @@
-package uabc.ic.benjaminbolanos.practica3.highscores
+package uabc.ic.benjaminbolanos.rubiksrace.highscores
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import uabc.ic.benjaminbolanos.practica3.R
+import uabc.ic.benjaminbolanos.rubiksrace.R
 
 class HighscoreAdapter(val highscoreList:ArrayList<Highscore>): RecyclerView.Adapter<HighscoreViewHolder>() {
 

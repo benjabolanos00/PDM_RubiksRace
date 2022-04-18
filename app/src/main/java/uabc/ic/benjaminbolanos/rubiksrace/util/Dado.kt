@@ -1,4 +1,4 @@
-package uabc.ic.benjaminbolanos.practica3.util
+package uabc.ic.benjaminbolanos.rubiksrace.util
 
 /**
  * Clase Dado que modela un dado de seis lados. Cada lado es un color distinto.

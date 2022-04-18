@@ -1,4 +1,4 @@
-package uabc.ic.benjaminbolanos.practica3
+package uabc.ic.benjaminbolanos.rubiksrace
 
 import org.junit.Test
 

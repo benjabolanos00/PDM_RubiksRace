@@ -1,10 +1,10 @@
-package uabc.ic.benjaminbolanos.practica3
+package uabc.ic.benjaminbolanos.rubiksrace
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import uabc.ic.benjaminbolanos.practica3.highscores.ext
+import uabc.ic.benjaminbolanos.rubiksrace.highscores.ext
 
 class Winner : AppCompatActivity() {
     private lateinit var newRecordText:TextView

@@ -1,11 +1,11 @@
-package uabc.ic.benjaminbolanos.practica3.highscores
+package uabc.ic.benjaminbolanos.rubiksrace.highscores
 
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import uabc.ic.benjaminbolanos.practica3.R
+import uabc.ic.benjaminbolanos.rubiksrace.R
 
 class HighscoreViewHolder(view: View): RecyclerView.ViewHolder(view){
     val highscoreCombinacion = arrayOf<ImageView>(view.findViewById(R.id.highscore_item_combinacion_1), view.findViewById(

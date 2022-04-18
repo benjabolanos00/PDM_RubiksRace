@@ -1,4 +1,4 @@
-package uabc.ic.benjaminbolanos.practica3
+package uabc.ic.benjaminbolanos.rubiksrace
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,13 +8,13 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
-import uabc.ic.benjaminbolanos.practica3.grid.GridModelo
-import uabc.ic.benjaminbolanos.practica3.highscores.Highscores
-import uabc.ic.benjaminbolanos.practica3.scrambler.ScramblerModelo
-import uabc.ic.benjaminbolanos.practica3.util.Color
-import uabc.ic.benjaminbolanos.practica3.util.Cronometro
-import uabc.ic.benjaminbolanos.practica3.highscores.Highscore
-import uabc.ic.benjaminbolanos.practica3.highscores.ext
+import uabc.ic.benjaminbolanos.rubiksrace.grid.GridModelo
+import uabc.ic.benjaminbolanos.rubiksrace.highscores.Highscores
+import uabc.ic.benjaminbolanos.rubiksrace.scrambler.ScramblerModelo
+import uabc.ic.benjaminbolanos.rubiksrace.util.Color
+import uabc.ic.benjaminbolanos.rubiksrace.util.Cronometro
+import uabc.ic.benjaminbolanos.rubiksrace.highscores.Highscore
+import uabc.ic.benjaminbolanos.rubiksrace.highscores.ext
 
 class RubiksRace() : AppCompatActivity() {
 
