@@ -1,4 +1,4 @@
-package uabc.ic.benjaminbolanos.rubiksrace.highscores
+package uabc.ic.benjaminbolanos.rubiksrace.highscores_view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

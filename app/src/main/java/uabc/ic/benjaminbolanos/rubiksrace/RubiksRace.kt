@@ -8,13 +8,16 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.viewModels
 import uabc.ic.benjaminbolanos.rubiksrace.grid.GridModelo
-import uabc.ic.benjaminbolanos.rubiksrace.highscores.Highscores
+import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.HighscoreViewModel
+import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.HighscoreViewModelFactory
+import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.Highscores
 import uabc.ic.benjaminbolanos.rubiksrace.scrambler.ScramblerModelo
 import uabc.ic.benjaminbolanos.rubiksrace.util.Color
 import uabc.ic.benjaminbolanos.rubiksrace.util.Cronometro
-import uabc.ic.benjaminbolanos.rubiksrace.highscores.Highscore
-import uabc.ic.benjaminbolanos.rubiksrace.highscores.ext
+import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.Highscore
+import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.ext
 
 class RubiksRace() : AppCompatActivity() {
 
@@ -35,6 +38,11 @@ class RubiksRace() : AppCompatActivity() {
 
     //Cronometro
     private val cronometro = Cronometro()
+
+    //HighscoreDatabase
+    private val highscoreViewModel: HighscoreViewModel by viewModels{
+        HighscoreViewModelFactory((application as Wo))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -186,6 +194,8 @@ class RubiksRace() : AppCompatActivity() {
     fun slamFrame(view:View){
         if(checkWinner()){
             cronometro.parar()
+
+
             ext.highscores.add(Highscore(cronometro.getTiempo(), gridModelo.movimientos, scramblerModel.getCombinacion()))
             val intent = Intent(this, Winner::class.java)
             if(ext.highscores[ext.highscores.size-1].isHighestScore()){

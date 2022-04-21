@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import uabc.ic.benjaminbolanos.rubiksrace.highscores.ext
+import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.ext
 
 class Winner : AppCompatActivity() {
     private lateinit var newRecordText:TextView

@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="uabc.ic.benjaminbolanos.rubiksrace.highscores.Highscores"
+            android:name="uabc.ic.benjaminbolanos.rubiksrace.highscores_view.Highscores"
             android:exported="false"
             android:parentActivityName="uabc.ic.benjaminbolanos.rubiksrace.MainMenu"/>
         <activity

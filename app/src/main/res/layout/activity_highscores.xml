@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".highscores.Highscores">
+    tools:context=".highscores_view.Highscores">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/highscores_recycler_view"
