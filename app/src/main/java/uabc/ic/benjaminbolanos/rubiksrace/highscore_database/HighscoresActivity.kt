@@ -28,5 +28,9 @@ class HighscoresActivity : AppCompatActivity() {
         }
     }
 
+    private fun agregarExtras(){
+
+    }
+
 
 }

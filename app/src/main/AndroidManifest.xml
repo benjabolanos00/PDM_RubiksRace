@@ -3,6 +3,7 @@
     package="uabc.ic.benjaminbolanos.rubiksrace">
 
     <application
+        android:name=".highscore_database.HighscoresApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,9 +12,6 @@
         android:theme="@style/Theme.Practica3">
         <activity
             android:name=".highscore_database.HighscoresActivity"
-            android:exported="false" />
-        <activity
-            android:name=".highscore_database.HighscoresCardViewActivity"
             android:exported="false" />
         <activity
             android:name=".Winner"
@@ -36,5 +34,7 @@
             android:name=".RubiksRace"
             android:exported="false" />
     </application>
+
+
 
 </manifest>

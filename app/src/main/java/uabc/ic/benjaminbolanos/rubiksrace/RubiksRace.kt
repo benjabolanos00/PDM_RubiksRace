@@ -195,7 +195,6 @@ class RubiksRace() : AppCompatActivity() {
     fun slamFrame(view:View){
         if(checkWinner()){
             cronometro.parar()
-
             highscoreViewModel.insert(Highscore(cronometro.getTiempo(), gridModelo.movimientos, scramblerModel.getCombinacion()))
 
             //ext.highscores.add(Highscore(cronometro.getTiempo(), gridModelo.movimientos, scramblerModel.getCombinacion()))
@@ -212,22 +211,5 @@ class RubiksRace() : AppCompatActivity() {
         } else {
             Toast.makeText(applicationContext,"Vaya, parece que no has ganado aun :(", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    /**
-     * Método para el boton Nuevo Juego. Reinicia el cronometro, el scrambler y el grid.
-     */
-    fun crearNuevoJuego(view: View?){
-        cronometro.parar()
-        scramblerModel.scramble()
-        updateScrambler()
-        gridModelo.crearGrid()
-        updateGrid()
-        cronometro.iniciar()
-    }
-
-    fun irHaciaHighscores(view: View){
-        val intent = Intent(this, Highscores::class.java)
-        startActivity(intent)
     }
 }

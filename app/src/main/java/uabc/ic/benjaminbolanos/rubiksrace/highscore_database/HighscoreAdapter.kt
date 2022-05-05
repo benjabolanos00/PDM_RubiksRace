@@ -53,7 +53,7 @@ class HighscoreAdapter : ListAdapter<Highscore, HighscoreAdapter.HighscoreViewHo
 
     class HighscoreComparator : DiffUtil.ItemCallback<Highscore>() {
         override fun areItemsTheSame(oldItem: Highscore, newItem: Highscore): Boolean {
-            return oldItem === newItem
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Highscore, newItem: Highscore): Boolean {
