@@ -27,7 +27,7 @@ class HighscoreViewHolder(view: View): RecyclerView.ViewHolder(view){
      */
     fun render(highscoreItem: Highscore){
         for(i in 0..8){
-            highscoreItem.combinacion?.get(i)?.let { highscoreCombinacion[i].setImageResource(it.valor) }
+            highscoreItem.combinacionColores?.get(i)?.let { highscoreCombinacion[i].setImageResource(it.valor) }
         }
         highscoreTiempo.text = highscoreItem.tiempoString()
         highscoreMovimientos.text = StringBuffer("${highscoreItem.movimientos} Movimientos")

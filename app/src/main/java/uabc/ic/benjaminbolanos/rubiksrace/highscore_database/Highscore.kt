@@ -11,16 +11,9 @@ import androidx.room.PrimaryKey
 data class Highscore(
     @ColumnInfo(name = "tiempo") val tiempo:Double,
     @ColumnInfo(name = "movimientos") val movimientos:Int,
-    val combinacion: Array<Color>){
-
-    @ColumnInfo(name = "combinacion") var combinacionValores: Array<Int> = Array(9){0}
+    @ColumnInfo(name = "combinacion") val combinacionColores: Array<Color>){
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id = 0
 
-    init {
-        for(i in combinacion.indices){
-            combinacionValores[i] = combinacion[i].valor
-        }
-    }
 
     /**
      * Método que compara el highscore con los demas del ArrayList de highscores para saber si es
@@ -30,10 +23,11 @@ data class Highscore(
         if(ext.highscores.size == 1){
             return true
         }
-        var menorTiempoActual = Double.MAX_VALUE
+
         var recordActual = ext.highscores[0]
+        var menorTiempoActual = recordActual.tiempo
         val cantidadHighscores = ext.highscores.size-1
-        for(i in 1..cantidadHighscores){
+        for(i in 1 until cantidadHighscores){
             if(ext.highscores[i].tiempo < menorTiempoActual){
                 menorTiempoActual = ext.highscores[i].tiempo
                 recordActual = ext.highscores[i]
@@ -66,10 +60,9 @@ data class Highscore(
     }
 
     override fun hashCode(): Int {
-        var result = id
-        result = 31 * result + tiempo.hashCode()
+        var result = tiempo.hashCode()
         result = 31 * result + movimientos
-        result = 31 * result + (combinacion?.contentHashCode() ?: 0)
+        result = 31 * result + id
         return result
     }
 

@@ -12,9 +12,6 @@ interface HighscoreDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(highscore: Highscore)
 
-    @Delete
-    fun deleteHighscore(highscore: Highscore)
-
     @Query("DELETE FROM HIGHSCORE_TABLE")
     suspend fun deleteAll()
 }

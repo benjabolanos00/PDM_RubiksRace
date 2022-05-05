@@ -8,7 +8,7 @@ class HighscoresApplication: Application() {
 
     val applicationScope = CoroutineScope(SupervisorJob())
 
-    val database by lazy { HighscoreRoomDatabase.getDatabase(this) }
+    val database by lazy { HighscoreRoomDatabase.getDatabase(this, applicationScope) }
 
     val repository by lazy { HighscoreRepository(database.highscoreDao()) }
 }

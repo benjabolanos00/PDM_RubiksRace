@@ -5,7 +5,7 @@ import kotlin.random.Random
 
 class Color() {
     var valor:Int = 0
-    private var colorBlind: Boolean = false;
+    var colorBlind: Boolean = false;
     var nombre:String = "black"
 
     /**
