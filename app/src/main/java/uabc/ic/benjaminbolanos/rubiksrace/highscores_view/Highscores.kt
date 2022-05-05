@@ -7,6 +7,8 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import uabc.ic.benjaminbolanos.rubiksrace.R
+import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.Highscore
+import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.ext
 
 class Highscores : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView

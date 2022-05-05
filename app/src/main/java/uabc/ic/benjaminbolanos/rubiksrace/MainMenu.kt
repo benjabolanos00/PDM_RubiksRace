@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SwitchCompat
+import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.HighscoresActivity
 import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.Highscores
 
 class MainMenu : AppCompatActivity() {
@@ -21,7 +22,7 @@ class MainMenu : AppCompatActivity() {
     }
 
     fun goToHighscores(view: View){
-        val highscoresIntent = Intent(applicationContext, Highscores::class.java)
+        val highscoresIntent = Intent(applicationContext, HighscoresActivity::class.java)
         startActivity(highscoresIntent)
     }
 }

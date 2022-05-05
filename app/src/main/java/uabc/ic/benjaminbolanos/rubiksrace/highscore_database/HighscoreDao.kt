@@ -2,7 +2,6 @@ package uabc.ic.benjaminbolanos.rubiksrace.highscore_database
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
-import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.Highscore
 
 @Dao
 interface HighscoreDao {
@@ -15,4 +14,7 @@ interface HighscoreDao {
 
     @Delete
     fun deleteHighscore(highscore: Highscore)
+
+    @Query("DELETE FROM HIGHSCORE_TABLE")
+    suspend fun deleteAll()
 }

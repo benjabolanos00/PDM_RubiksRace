@@ -12,12 +12,13 @@ import androidx.activity.viewModels
 import uabc.ic.benjaminbolanos.rubiksrace.grid.GridModelo
 import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.HighscoreViewModel
 import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.HighscoreViewModelFactory
+import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.HighscoresApplication
 import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.Highscores
 import uabc.ic.benjaminbolanos.rubiksrace.scrambler.ScramblerModelo
 import uabc.ic.benjaminbolanos.rubiksrace.util.Color
 import uabc.ic.benjaminbolanos.rubiksrace.util.Cronometro
-import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.Highscore
-import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.ext
+import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.Highscore
+import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.ext
 
 class RubiksRace() : AppCompatActivity() {
 
@@ -41,7 +42,7 @@ class RubiksRace() : AppCompatActivity() {
 
     //HighscoreDatabase
     private val highscoreViewModel: HighscoreViewModel by viewModels{
-        HighscoreViewModelFactory((application as Wo))
+        HighscoreViewModelFactory((application as HighscoresApplication).repository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -195,8 +196,9 @@ class RubiksRace() : AppCompatActivity() {
         if(checkWinner()){
             cronometro.parar()
 
+            highscoreViewModel.insert(Highscore(cronometro.getTiempo(), gridModelo.movimientos, scramblerModel.getCombinacion()))
 
-            ext.highscores.add(Highscore(cronometro.getTiempo(), gridModelo.movimientos, scramblerModel.getCombinacion()))
+            //ext.highscores.add(Highscore(cronometro.getTiempo(), gridModelo.movimientos, scramblerModel.getCombinacion()))
             val intent = Intent(this, Winner::class.java)
             if(ext.highscores[ext.highscores.size-1].isHighestScore()){
                 intent.putExtra("NewRecord", true)

@@ -1,4 +1,4 @@
-package uabc.ic.benjaminbolanos.rubiksrace.highscores_view
+package uabc.ic.benjaminbolanos.rubiksrace.highscore_database
 
 import androidx.room.ColumnInfo
 import uabc.ic.benjaminbolanos.rubiksrace.util.Color
@@ -11,9 +11,16 @@ import androidx.room.PrimaryKey
 data class Highscore(
     @ColumnInfo(name = "tiempo") val tiempo:Double,
     @ColumnInfo(name = "movimientos") val movimientos:Int,
-    @ColumnInfo(name = "combinacion") val combinacion: Array<Color>?){
+    val combinacion: Array<Color>){
 
+    @ColumnInfo(name = "combinacion") var combinacionValores: Array<Int> = Array(9){0}
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id = 0
+
+    init {
+        for(i in combinacion.indices){
+            combinacionValores[i] = combinacion[i].valor
+        }
+    }
 
     /**
      * Método que compara el highscore con los demas del ArrayList de highscores para saber si es
@@ -71,11 +78,12 @@ data class Highscore(
      * y los agrega a la lista de highscores
      */
     companion object{
-        fun random(){
+        fun random(): Highscore {
             val comb = Array(9){ Color() }
             val t:Double = Random.nextDouble(360.0)
             val movs:Int = Random.nextInt(250)
             ext.highscores.add(Highscore(t, movs, comb))
+            return Highscore(t, movs, comb)
         }
     }
 }

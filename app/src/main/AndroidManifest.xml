@@ -10,25 +10,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Practica3">
         <activity
-            android:name="uabc.ic.benjaminbolanos.rubiksrace.Winner"
-            android:exported="false"
-            android:parentActivityName="uabc.ic.benjaminbolanos.rubiksrace.MainMenu"/>
+            android:name=".highscore_database.HighscoresActivity"
+            android:exported="false" />
         <activity
-            android:name="uabc.ic.benjaminbolanos.rubiksrace.MainMenu"
+            android:name=".highscore_database.HighscoresCardViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Winner"
+            android:exported="false"
+            android:parentActivityName=".MainMenu" />
+        <activity
+            android:name=".MainMenu"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="uabc.ic.benjaminbolanos.rubiksrace.highscores_view.Highscores"
+            android:name=".highscores_view.Highscores"
             android:exported="false"
-            android:parentActivityName="uabc.ic.benjaminbolanos.rubiksrace.MainMenu"/>
+            android:parentActivityName=".MainMenu" />
         <activity
-            android:name="uabc.ic.benjaminbolanos.rubiksrace.RubiksRace"
-            android:exported="false">
-        </activity>
+            android:name=".RubiksRace"
+            android:exported="false" />
     </application>
 
 </manifest>

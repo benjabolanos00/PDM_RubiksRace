@@ -8,10 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import uabc.ic.benjaminbolanos.rubiksrace.R
-import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.Highscore
-import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.HighscoreViewHolder
 
-class HighscoreAdapter : ListAdapter<Highscore, HighscoreViewHolder>(WordsComparator()) {
+class HighscoreAdapter : ListAdapter<Highscore, HighscoreAdapter.HighscoreViewHolder>(HighscoreComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HighscoreViewHolder {
         return HighscoreViewHolder.create(parent)
@@ -19,10 +17,10 @@ class HighscoreAdapter : ListAdapter<Highscore, HighscoreViewHolder>(WordsCompar
 
     override fun onBindViewHolder(holder: HighscoreViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current.highscore)
+        holder.bind(current.tiempoString())
     }
 
-    class HighscoreViewHolder2(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class HighscoreViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val wordItemView: TextView = itemView.findViewById(R.id.textView)
 
         fun bind(text: String?) {
@@ -38,7 +36,7 @@ class HighscoreAdapter : ListAdapter<Highscore, HighscoreViewHolder>(WordsCompar
         }
     }
 
-    class WordsComparator : DiffUtil.ItemCallback<Highscore>() {
+    class HighscoreComparator : DiffUtil.ItemCallback<Highscore>() {
         override fun areItemsTheSame(oldItem: Highscore, newItem: Highscore): Boolean {
             return oldItem === newItem
         }

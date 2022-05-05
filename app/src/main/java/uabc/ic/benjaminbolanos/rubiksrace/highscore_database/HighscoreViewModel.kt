@@ -2,7 +2,6 @@ package uabc.ic.benjaminbolanos.rubiksrace.highscore_database
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
-import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.Highscore
 
 class HighscoreViewModel(private val repository: HighscoreRepository): ViewModel() {
     val allHighscores: LiveData<List<Highscore>> = repository.allHighscores.asLiveData()

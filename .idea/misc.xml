@@ -9,6 +9,8 @@
         <entry key="..\:/Users/bbola/AndroidStudioProjects/Practica3/app/src/main/res/layout/highscore_item.xml" value="0.5" />
         <entry key="..\:/Users/bbola/AndroidStudioProjects/Practica3/app/src/main/res/layout/scrambler_view.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_highscores.xml" value="0.496875" />
+        <entry key="app/src/main/res/layout/activity_highscores_cardview.xml" value="0.496875" />
+        <entry key="app/src/main/res/layout/activity_winner.xml" value="0.24164133738601823" />
         <entry key="app/src/main/res/layout/highscore_item.xml" value="0.496875" />
       </map>
     </option>

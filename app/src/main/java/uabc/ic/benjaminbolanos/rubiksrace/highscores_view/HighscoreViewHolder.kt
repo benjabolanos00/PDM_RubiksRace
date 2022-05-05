@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import uabc.ic.benjaminbolanos.rubiksrace.R
+import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.Highscore
 
 class HighscoreViewHolder(view: View): RecyclerView.ViewHolder(view){
     val highscoreCombinacion = arrayOf<ImageView>(view.findViewById(R.id.highscore_item_combinacion_1), view.findViewById(

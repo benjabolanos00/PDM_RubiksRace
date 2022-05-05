@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import uabc.ic.benjaminbolanos.rubiksrace.R
+import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.Highscore
+import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.ext
 
 class HighscoreAdapter(val highscoreList:ArrayList<Highscore>): RecyclerView.Adapter<HighscoreViewHolder>() {
 
