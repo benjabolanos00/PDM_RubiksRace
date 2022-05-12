@@ -18,7 +18,7 @@ class Converters {
     @TypeConverter
     fun colorArrayToString(colores: Array<Color>): String{
         var value = ""
-        value += if(colores[0].colorBlind) "v,"
+        value += if(colores[0].daltonismo) "v,"
         else "f,"
 
         for(color in colores){

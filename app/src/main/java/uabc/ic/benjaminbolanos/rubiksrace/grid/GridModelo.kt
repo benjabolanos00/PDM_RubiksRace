@@ -76,7 +76,7 @@ class GridModelo(modoDaltonico: Boolean) {
             }
             i++
         }
-        cuadros[i] = Color("negro", colorBlind = false)
+        cuadros[i] = Color("negro", daltonismo = false)
     }
 
     /**

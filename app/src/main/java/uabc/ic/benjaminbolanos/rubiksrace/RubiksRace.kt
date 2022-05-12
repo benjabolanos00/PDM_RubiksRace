@@ -9,16 +9,15 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import uabc.ic.benjaminbolanos.rubiksrace.R
 import uabc.ic.benjaminbolanos.rubiksrace.grid.GridModelo
-import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.HighscoreViewModel
-import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.HighscoreViewModelFactory
-import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.HighscoresApplication
+import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.*
 import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.Highscores
 import uabc.ic.benjaminbolanos.rubiksrace.scrambler.ScramblerModelo
 import uabc.ic.benjaminbolanos.rubiksrace.util.Color
 import uabc.ic.benjaminbolanos.rubiksrace.util.Cronometro
-import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.Highscore
-import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.ext
 
 class RubiksRace() : AppCompatActivity() {
 
@@ -193,19 +192,36 @@ class RubiksRace() : AppCompatActivity() {
      * si es nuevo record. En ese caso, muestra un toast mostrando que es nuevo record.
      */
     fun slamFrame(view:View){
+        //coment
+        var newHs:Highscore = Highscore(0.0, 0, Array(9){Color()})
+        var hsList:List<Highscore> = listOf()
+        highscoreViewModel.orderedHighscores.observe(this){ highscores ->
+            highscores.let { hsList = it }
+        }
+        for (high in hsList){
+            Log.i("HS", "a")
+        }
+        Log.i("HS",newHs.toString())
         if(checkWinner()){
             cronometro.parar()
-            highscoreViewModel.insert(Highscore(cronometro.getTiempo(), gridModelo.movimientos, scramblerModel.getCombinacion()))
+            val newHighscore = Highscore(cronometro.tiempo, gridModelo.movimientos, scramblerModel.getCombinacion())
+            highscoreViewModel.insert(newHighscore)
+            val intent = Intent(this, HighscoresActivity::class.java)
+            //val maxHS = highscoreViewModel.getMax()
+            //Log.i("HS", maxHS.toString())
 
             //ext.highscores.add(Highscore(cronometro.getTiempo(), gridModelo.movimientos, scramblerModel.getCombinacion()))
-            val intent = Intent(this, Winner::class.java)
-            if(ext.highscores[ext.highscores.size-1].isHighestScore()){
-                intent.putExtra("NewRecord", true)
+            //val hs = Json.encodeToString(Highscore(cronometro.tiempo, gridModelo.movimientos, scramblerModel.getCombinacion()))
+            //Log.i("HS", hs)
+            //intent.putExtra("hs", hs)
+            /*if(newHighscore.isHighestScore()){
+                intent.putExtra("record", true)
                 Toast.makeText(applicationContext,"FELICIDADES! HAS GANADO EN $cronometro! NUEVO RECORD!", Toast.LENGTH_LONG).show()
             } else {
-                intent.putExtra("NewRecord", false)
+                intent.putExtra("record", false)
                 Toast.makeText(applicationContext,"FELICIDADES! HAS GANADO EN $cronometro!", Toast.LENGTH_LONG).show()
-            }
+            }*/
+            //Log.i("HS", "a")
             finish()
             startActivity(intent)
         } else {

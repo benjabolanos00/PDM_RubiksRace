@@ -14,4 +14,7 @@ interface HighscoreDao {
 
     @Query("DELETE FROM HIGHSCORE_TABLE")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM HIGHSCORE_TABLE ORDER BY tiempo ASC, movimientos ASC")
+    fun getOrdered(): Flow<List<Highscore>>
 }

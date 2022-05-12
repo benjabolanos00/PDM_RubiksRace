@@ -10,7 +10,7 @@ class Cronometro {
     private val timer: Timer = Timer()
     private lateinit var timerTask:TimerTask
     private var timerInicidado:Boolean = false
-    private var tiempo:Double = 0.0
+    var tiempo:Double = 0.0
 
     /**
      * Método para parar el cronometro. No reinicia el tiempo.
@@ -70,7 +70,7 @@ class Cronometro {
      * Método para retornar el tiempo.
      * @return Double del tiempo.
      */
-    fun getTiempo():Double{
-        return tiempo
-    }
+    //fun getTiempo():Double{
+    //    return tiempo
+    //}
 }

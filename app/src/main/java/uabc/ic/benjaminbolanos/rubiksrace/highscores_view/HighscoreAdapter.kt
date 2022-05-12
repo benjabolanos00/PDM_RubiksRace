@@ -15,7 +15,7 @@ class HighscoreAdapter(val highscoreList:ArrayList<Highscore>): RecyclerView.Ada
      * layout.
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HighscoreViewHolder {
-        val layoutInflater =LayoutInflater.from(parent.context)
+        val layoutInflater = LayoutInflater.from(parent.context)
         return HighscoreViewHolder(layoutInflater.inflate(R.layout.highscore_item,parent,false))
     }
 

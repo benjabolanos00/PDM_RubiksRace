@@ -14,7 +14,6 @@ data class Highscore(
     @ColumnInfo(name = "combinacion") val combinacionColores: Array<Color>){
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id = 0
 
-
     /**
      * Método que compara el highscore con los demas del ArrayList de highscores para saber si es
      * el más alto.
@@ -34,6 +33,10 @@ data class Highscore(
             }
         }
         return this.tiempo < menorTiempoActual && this.movimientos < recordActual.movimientos
+    }
+
+    override fun toString(): String{
+        return "ID: $id Tiempo: $tiempo Movimientos: $movimientos"
     }
 
     /**

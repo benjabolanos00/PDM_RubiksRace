@@ -1,25 +1,32 @@
 package uabc.ic.benjaminbolanos.rubiksrace.util
 
+import android.util.Log
 import uabc.ic.benjaminbolanos.rubiksrace.R
 import kotlin.random.Random
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
-class Color() {
+@Serializable
+class Color(var nombre: String, var daltonismo: Boolean) {
     var valor:Int = 0
-    var colorBlind: Boolean = false;
-    var nombre:String = "black"
+    //var colorBlind: Boolean = false;
+    //var nombre:String = "black"
 
     /**
      * Constructor que inicializa el color con un color aleatorio.
      */
     init {
-        randomColor()
+        setColor(nombre, daltonismo)
+        //randomColor()
+        //val json = Json.encodeToString(this)
     }
 
     /**
      * Constructor que inicializa el color a partir de su nombre, si esta seleccionado, y si es para daltonicos
-     */
-    constructor(name: String, colorBlind: Boolean) : this() {
-        setColor(name, colorBlind)
+    */
+    constructor() : this("color", false) {
+        randomColor()
     }
 
     /**
@@ -37,7 +44,7 @@ class Color() {
     }
 
     fun getSelected(): Int{
-        if(colorBlind){
+        if(daltonismo){
             return when(nombre){
                 "azul" -> R.drawable.cuadro_azul_daltonico_selected
                 "rojo" -> R.drawable.cuadro_rojo_daltonico_selected
@@ -62,7 +69,7 @@ class Color() {
 
     private fun setColor(name: String, colorBlind: Boolean){
         this.nombre = name
-        this.colorBlind = colorBlind
+        this.daltonismo = colorBlind
 
         if(colorBlind){
             when(name){
