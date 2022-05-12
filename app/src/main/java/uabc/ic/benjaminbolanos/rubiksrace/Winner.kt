@@ -27,11 +27,14 @@ class Winner : AppCompatActivity() {
     private fun setInfo(){
         val bundle = intent.extras
         if(bundle != null){
-            if(!bundle.getBoolean("NewRecord"))
+            if(!bundle.getBoolean("record"))
                 newRecordText.visibility = View.INVISIBLE
+            val movsString = StringBuffer(bundle.get("movs") as Int)
+            movesText.text = movsString.append(" Movimientos")
+            timeText.text = bundle.get("tiempo") as String
         }
-        val lastScore = ext.highscores[ext.highscores.size-1]
-        movesText.text = StringBuilder(lastScore.movimientos.toString() + " Movimientos") //StringBuilder(ext.highscores[ext.highscores.size-1].movimientos)
-        timeText.text = lastScore.tiempoString()
+
+        ////StringBuilder(ext.highscores[ext.highscores.size-1].movimientos)
+        //
     }
 }

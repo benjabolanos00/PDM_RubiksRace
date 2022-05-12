@@ -17,4 +17,10 @@ class HighscoreRepository(private val highscoreDao: HighscoreDao) {
         highscoreDao.insert(highscore)
     }
 
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun deleteAll(){
+        highscoreDao.deleteAll()
+    }
+
 }

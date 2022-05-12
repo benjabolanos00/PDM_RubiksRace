@@ -57,7 +57,8 @@ data class Highscore(
         if (javaClass != other?.javaClass) return false
 
         other as Highscore
-
+        if(tiempo != other.tiempo) return false
+        if(movimientos != other.movimientos) return false
         if (id != other.id) return false
         return true
     }
@@ -67,6 +68,16 @@ data class Highscore(
         result = 31 * result + movimientos
         result = 31 * result + id
         return result
+    }
+
+    operator fun compareTo(highscore: Highscore): Int {
+        return when {
+            highscore.tiempo > tiempo -> 1
+            highscore.tiempo < tiempo -> -1
+            highscore.movimientos > movimientos -> 1
+            highscore.movimientos < movimientos -> -1
+            else -> 0
+        }
     }
 
     /**
