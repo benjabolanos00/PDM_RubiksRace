@@ -13,27 +13,7 @@ data class Highscore(
     @ColumnInfo(name = "movimientos") val movimientos:Int,
     @ColumnInfo(name = "combinacion") val combinacionColores: Array<Color>){
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id = 0
-
-    /**
-     * Método que compara el highscore con los demas del ArrayList de highscores para saber si es
-     * el más alto.
-     */
-    fun isHighestScore():Boolean{
-        if(ext.highscores.size == 1){
-            return true
-        }
-
-        var recordActual = ext.highscores[0]
-        var menorTiempoActual = recordActual.tiempo
-        val cantidadHighscores = ext.highscores.size-1
-        for(i in 1 until cantidadHighscores){
-            if(ext.highscores[i].tiempo < menorTiempoActual){
-                menorTiempoActual = ext.highscores[i].tiempo
-                recordActual = ext.highscores[i]
-            }
-        }
-        return this.tiempo < menorTiempoActual && this.movimientos < recordActual.movimientos
-    }
+    @ColumnInfo(name = "recordActual") var recordActual = false
 
     override fun toString(): String{
         return "ID: $id Tiempo: $tiempo Movimientos: $movimientos"
@@ -72,10 +52,10 @@ data class Highscore(
 
     operator fun compareTo(highscore: Highscore): Int {
         return when {
-            highscore.tiempo > tiempo -> 1
-            highscore.tiempo < tiempo -> -1
-            highscore.movimientos > movimientos -> 1
-            highscore.movimientos < movimientos -> -1
+            highscore.tiempo > tiempo -> -1
+            highscore.tiempo < tiempo -> 1
+            highscore.movimientos > movimientos -> -1
+            highscore.movimientos < movimientos -> 1
             else -> 0
         }
     }
@@ -89,9 +69,7 @@ data class Highscore(
             val comb = Array(9){ Color() }
             val t:Double = Random.nextDouble(360.0)
             val movs:Int = Random.nextInt(250)
-            ext.highscores.add(Highscore(t, movs, comb))
             return Highscore(t, movs, comb)
         }
     }
 }
-object ext{val highscores: ArrayList<Highscore> = ArrayList()}

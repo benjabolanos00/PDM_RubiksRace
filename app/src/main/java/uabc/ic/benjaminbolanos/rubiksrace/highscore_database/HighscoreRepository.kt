@@ -10,7 +10,6 @@ class HighscoreRepository(private val highscoreDao: HighscoreDao) {
     val allHighscores: Flow<List<Highscore>> = highscoreDao.getAll()
     val orderedHighscores: Flow<List<Highscore>> = highscoreDao.getOrdered()
 
-
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun insert(highscore: Highscore){
@@ -22,5 +21,4 @@ class HighscoreRepository(private val highscoreDao: HighscoreDao) {
     suspend fun deleteAll(){
         highscoreDao.deleteAll()
     }
-
 }

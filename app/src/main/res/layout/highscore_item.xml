@@ -7,100 +7,114 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/highscore_item_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/highscore_item_combinacion_1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/cuadro_amarillo"/>
+        <ImageView
+            android:id="@+id/highscore_item_combinacion_1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/cuadro_amarillo"
+            android:contentDescription="@string/cuadro_de_scrambler"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/highscore_item_combinacion_2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintStart_toEndOf="@+id/highscore_item_combinacion_1"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/cuadro_azul"/>
+        <ImageView
+            android:id="@+id/highscore_item_combinacion_2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/cuadro_azul"
+            android:contentDescription="@string/cuadro_de_scrambler"
+            app:layout_constraintStart_toEndOf="@+id/highscore_item_combinacion_1"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/highscore_item_combinacion_3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintStart_toEndOf="@+id/highscore_item_combinacion_2"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/cuadro_blanco"/>
+        <ImageView
+            android:id="@+id/highscore_item_combinacion_3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/cuadro_blanco"
+            android:contentDescription="@string/cuadro_de_scrambler"
+            app:layout_constraintStart_toEndOf="@+id/highscore_item_combinacion_2"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/highscore_item_combinacion_4"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_1"
-        android:background="@drawable/cuadro_naranja"/>
+        <ImageView
+            android:id="@+id/highscore_item_combinacion_4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/cuadro_naranja"
+            android:contentDescription="@string/cuadro_de_scrambler"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_1" />
 
-    <ImageView
-        android:id="@+id/highscore_item_combinacion_5"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_4"
-        app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_2"
-        android:background="@drawable/cuadro_verde"/>
+        <ImageView
+            android:id="@+id/highscore_item_combinacion_5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/cuadro_verde"
+            android:contentDescription="@string/cuadro_de_scrambler"
+            app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_4"
+            app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_2" />
 
-    <ImageView
-        android:id="@+id/highscore_item_combinacion_6"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_5"
-        app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_3"
-        android:background="@drawable/cuadro_rojo"/>
+        <ImageView
+            android:id="@+id/highscore_item_combinacion_6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/cuadro_rojo"
+            android:contentDescription="@string/cuadro_de_scrambler"
+            app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_5"
+            app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_3" />
 
-    <ImageView
-        android:id="@+id/highscore_item_combinacion_7"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_4"
-        android:background="@drawable/cuadro_azul"/>
+        <ImageView
+            android:id="@+id/highscore_item_combinacion_7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/cuadro_azul"
+            android:contentDescription="@string/cuadro_de_scrambler"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_4" />
 
-    <ImageView
-        android:id="@+id/highscore_item_combinacion_8"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_7"
-        app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_5"
-        android:background="@drawable/cuadro_blanco"/>
+        <ImageView
+            android:id="@+id/highscore_item_combinacion_8"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/cuadro_blanco"
+            android:contentDescription="@string/cuadro_de_scrambler"
+            app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_7"
+            app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_5" />
 
-    <ImageView
-        android:id="@+id/highscore_item_combinacion_9"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_8"
-        app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_6"
-        android:background="@drawable/cuadro_amarillo"/>
+        <ImageView
+            android:id="@+id/highscore_item_combinacion_9"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/cuadro_amarillo"
+            android:contentDescription="@string/cuadro_de_scrambler"
+            app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_8"
+            app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_6" />
 
-    <TextView
-        android:id="@+id/highscore_item_tiempo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="00:00:00"
-        app:layout_constraintBottom_toBottomOf="@id/highscore_item_combinacion_3"
-        app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_6"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/highscore_item_tiempo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="00:00:00"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@id/highscore_item_combinacion_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_6" />
 
-    <TextView
-        android:id="@+id/highscore_item_movimientos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="00 Movimientos"
-        app:layout_constraintTop_toBottomOf="@id/highscore_item_tiempo"
-        app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_6"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/highscore_item_movimientos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="00 Movimientos"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_6"
+            app:layout_constraintTop_toBottomOf="@id/highscore_item_tiempo" />
 
     <Button
         android:id="@+id/highscore_item_eliminar"

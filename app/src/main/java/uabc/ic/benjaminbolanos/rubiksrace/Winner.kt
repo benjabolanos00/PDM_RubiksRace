@@ -1,15 +1,16 @@
 package uabc.ic.benjaminbolanos.rubiksrace
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.widget.Button
 import android.widget.TextView
-import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.ext
+import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.HighscoresActivity
 
 class Winner : AppCompatActivity() {
-    private lateinit var newRecordText:TextView
     private lateinit var movesText: TextView
     private lateinit var timeText: TextView
+    private lateinit var highscoresButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,22 +20,23 @@ class Winner : AppCompatActivity() {
     }
 
     private fun initViews(){
-        newRecordText = findViewById(R.id.winner_newrecord_text)
         movesText = findViewById(R.id.winner_moves_text)
         timeText = findViewById(R.id.winner_time_text)
+        highscoresButton = findViewById(R.id.winner_highscores_button)
+
+        highscoresButton.setOnClickListener {
+            val intent = Intent(this, HighscoresActivity::class.java)
+            finish()
+            startActivity(intent)
+        }
     }
 
     private fun setInfo(){
         val bundle = intent.extras
         if(bundle != null){
-            if(!bundle.getBoolean("record"))
-                newRecordText.visibility = View.INVISIBLE
             val movsString = StringBuffer(bundle.get("movs") as Int)
             movesText.text = movsString.append(" Movimientos")
             timeText.text = bundle.get("tiempo") as String
         }
-
-        ////StringBuilder(ext.highscores[ext.highscores.size-1].movimientos)
-        //
     }
 }

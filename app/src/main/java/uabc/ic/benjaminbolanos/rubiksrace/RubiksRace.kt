@@ -9,14 +9,10 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
-import uabc.ic.benjaminbolanos.rubiksrace.R
 import uabc.ic.benjaminbolanos.rubiksrace.grid.GridModelo
 import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.*
-import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.Highscores
+import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.HighscoreViewModel
+import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.HighscoreViewModelFactory
 import uabc.ic.benjaminbolanos.rubiksrace.scrambler.ScramblerModelo
 import uabc.ic.benjaminbolanos.rubiksrace.util.Color
 import uabc.ic.benjaminbolanos.rubiksrace.util.Cronometro
@@ -194,23 +190,6 @@ class RubiksRace() : AppCompatActivity() {
      * si es nuevo record. En ese caso, muestra un toast mostrando que es nuevo record.
      */
     fun slamFrame(view:View){
-
-        val nhs = Highscore(68.0,68, Array(9){Color()})
-        val newIntent = Intent(applicationContext,Winner::class.java)
-        highscoreViewModel.orderedHighscores.observe(this){
-            if(it.isNotEmpty()){
-                Log.i("HS", "aaa")
-                val record = nhs<it[0]
-                val best = if(record) nhs else it[0]
-                newIntent.putExtra("record", record)
-                newIntent.putExtra("tiempo",best.tiempoString())
-                newIntent.putExtra("movs", best.movimientos)
-            }
-        }
-        highscoreViewModel.insert(nhs)
-        finish()
-        startActivity(newIntent)
-
         if(checkWinner()){
             cronometro.parar()
             val newHighscore = Highscore(cronometro.tiempo, gridModelo.movimientos, scramblerModel.getCombinacion())
@@ -220,9 +199,12 @@ class RubiksRace() : AppCompatActivity() {
                     Log.i("HS", "aaa")
                     val record = newHighscore<it[0]
                     intent.putExtra("record", record)
+                    Log.i("HS", "hay nuevo record: $record")
                 }
             }
             highscoreViewModel.insert(newHighscore)
+            intent.putExtra("movs", newHighscore.movimientos)
+            intent.putExtra("tiempo", newHighscore.tiempoString())
             finish()
             startActivity(intent)
 

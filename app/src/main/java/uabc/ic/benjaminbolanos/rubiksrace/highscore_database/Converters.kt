@@ -3,7 +3,15 @@ package uabc.ic.benjaminbolanos.rubiksrace.highscore_database
 import androidx.room.TypeConverter
 import uabc.ic.benjaminbolanos.rubiksrace.util.Color
 
+/**
+ * Clase Converters que contiene los convertidores de datos para poder guardar los resultados
+ * en la base de datos.
+ */
 class Converters {
+
+    /**
+     * Convierte un String en un Array de Colores
+     */
     @TypeConverter
     fun fromString(value: String): Array<Color>{
         val values = value.split(",")
@@ -15,6 +23,10 @@ class Converters {
         return colores
     }
 
+    /**
+     * Convierte un Array de Colores en un String, al principio guarda una letra para saber si es
+     * modo daltonismo
+     */
     @TypeConverter
     fun colorArrayToString(colores: Array<Color>): String{
         var value = ""

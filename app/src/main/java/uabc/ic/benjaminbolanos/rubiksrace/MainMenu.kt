@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SwitchCompat
-import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.HighscoresActivity
-import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.Highscores
+import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.HighscoresActivity
 
 class MainMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

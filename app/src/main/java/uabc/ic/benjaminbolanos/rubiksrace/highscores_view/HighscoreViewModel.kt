@@ -1,8 +1,9 @@
-package uabc.ic.benjaminbolanos.rubiksrace.highscore_database
+package uabc.ic.benjaminbolanos.rubiksrace.highscores_view
 
-import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
+import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.Highscore
+import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.HighscoreRepository
 
 class HighscoreViewModel(private val repository: HighscoreRepository): ViewModel() {
     val allHighscores: LiveData<List<Highscore>> = repository.allHighscores.asLiveData()
@@ -14,23 +15,6 @@ class HighscoreViewModel(private val repository: HighscoreRepository): ViewModel
 
     fun deleteAll() = viewModelScope.launch{
         repository.deleteAll()
-    }
-
-    fun getMax(){
-        val hsString = Transformations.map(orderedHighscores){
-            list -> "${list[0].tiempo} ${list[0].movimientos}"
-        }
-
-        //return Highscore(hs)
-
-
-        //val hsValue = Transformations.switchMap(orderedHighscores) {
-        //    list -> getHighscore(list)
-        //}
-    }
-
-    private fun getHighscore(lista:List<Highscore>): LiveData<List<Highscore>>{
-        return orderedHighscores
     }
 }
 

@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Practica3">
         <activity
-            android:name=".highscore_database.HighscoresActivity"
+            android:name=".highscores_view.HighscoresActivity"
             android:exported="false" />
         <activity
             android:name=".Winner"
