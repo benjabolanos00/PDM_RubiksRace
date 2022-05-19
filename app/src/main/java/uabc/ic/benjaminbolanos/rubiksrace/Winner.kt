@@ -19,6 +19,10 @@ class Winner : AppCompatActivity() {
         setInfo()
     }
 
+    /**
+     * Metodo que inicializa los Views de la Actividad y crea el onClickListener del highscoreButton
+     * el cual crea un intent que va hacia HighscoresActivity
+     */
     private fun initViews(){
         movesText = findViewById(R.id.winner_moves_text)
         timeText = findViewById(R.id.winner_time_text)
@@ -31,6 +35,9 @@ class Winner : AppCompatActivity() {
         }
     }
 
+    /**
+     * Metodo que obtiene la informaciona del intent y la muestra en los views.
+     */
     private fun setInfo(){
         val bundle = intent.extras
         if(bundle != null){

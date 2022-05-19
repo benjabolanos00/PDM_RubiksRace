@@ -31,6 +31,7 @@ class HighscoresActivity : AppCompatActivity() {
         val orderSwitch = findViewById<SwitchCompat>(R.id.highscores_orderby_switch)
 
         orderSwitch.setOnCheckedChangeListener { _, b ->
+            adapter.isOrderedList = !b
             if(b){
                 recyclerView.adapter = adapter
                 highscoreViewModel.allHighscores.observe(this){ highscores ->

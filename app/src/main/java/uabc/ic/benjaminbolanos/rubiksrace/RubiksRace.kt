@@ -186,28 +186,20 @@ class RubiksRace() : AppCompatActivity() {
     }
 
     /**
-     * Método para el boton Slam!. Si hay ganador, para el cronometro, crea el highscore y busca
-     * si es nuevo record. En ese caso, muestra un toast mostrando que es nuevo record.
+     * Método para el boton Slam!. Si hay ganador, para el cronometro, crea el highscore y lo manda
+     * a guardar en la base de datos. Despues crea un intent hacia HighscoresActivity para mostrar
+     * los resultados del juego.
      */
     fun slamFrame(view:View){
         if(checkWinner()){
             cronometro.parar()
             val newHighscore = Highscore(cronometro.tiempo, gridModelo.movimientos, scramblerModel.getCombinacion())
             val intent = Intent(applicationContext,Winner::class.java)
-            highscoreViewModel.orderedHighscores.observe(this){
-                if(it.isNotEmpty()){
-                    Log.i("HS", "aaa")
-                    val record = newHighscore<it[0]
-                    intent.putExtra("record", record)
-                    Log.i("HS", "hay nuevo record: $record")
-                }
-            }
             highscoreViewModel.insert(newHighscore)
             intent.putExtra("movs", newHighscore.movimientos)
             intent.putExtra("tiempo", newHighscore.tiempoString())
             finish()
             startActivity(intent)
-
         } else {
             Toast.makeText(applicationContext,"Vaya, parece que no has ganado aun :(", Toast.LENGTH_SHORT).show()
         }

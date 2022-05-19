@@ -19,16 +19,15 @@ abstract class HighscoreRoomDatabase: RoomDatabase() {
         private val scope: CoroutineScope
     ) : RoomDatabase.Callback() {
 
+        /**
+         * Metodo onCreate que al crear la base de datos inserta 2 datos aleatorios.
+         */
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
             INSTANCE?.let { database ->
                 scope.launch {
-                    var hsDao = database.highscoreDao()
-
-                    // Delete all content here.
+                    val hsDao = database.highscoreDao()
                     hsDao.deleteAll()
-
-                    // Add sample words.
                     var hs = Highscore.random()
                     hsDao.insert(hs)
                     hs = Highscore.random()
@@ -42,12 +41,14 @@ abstract class HighscoreRoomDatabase: RoomDatabase() {
         @Volatile
         private var INSTANCE: HighscoreRoomDatabase? = null
 
+        /**
+         * Metodo para obtener la base de datos y que esta sea un singleton para no tener multiples
+         * instancias de la misma.
+         */
         fun getDatabase(
             context: Context,
             scope: CoroutineScope
         ): HighscoreRoomDatabase {
-            // if the INSTANCE is not null, then return it,
-            // if it is, then create the database
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,

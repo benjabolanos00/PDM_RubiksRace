@@ -5,6 +5,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import java.util.concurrent.Callable
 
+/**
+ * Clase HighscoreRepository que se conecta con un HighscoreDao
+ */
 class HighscoreRepository(private val highscoreDao: HighscoreDao) {
 
     val allHighscores: Flow<List<Highscore>> = highscoreDao.getAll()

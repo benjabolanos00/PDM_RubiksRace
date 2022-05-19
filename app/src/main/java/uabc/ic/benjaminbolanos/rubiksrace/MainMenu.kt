@@ -13,6 +13,10 @@ class MainMenu : AppCompatActivity() {
         setContentView(R.layout.activity_main_menu)
     }
 
+    /**
+     * Metodo del boton Nuevo Juego que crea un intent hacia RubiksRace y manda si es en modo
+     * daltonico.
+     */
     fun newGame(view: View){
         val switch = findViewById<SwitchCompat>(R.id.main_menu_colorblind_switch)
         val newGameIntent = Intent(applicationContext, RubiksRace::class.java)
@@ -20,6 +24,9 @@ class MainMenu : AppCompatActivity() {
         startActivity(newGameIntent)
     }
 
+    /**
+     * Metodo del boton Highscores que crea un intent hacia HighscoresActivity
+     */
     fun goToHighscores(view: View){
         val highscoresIntent = Intent(applicationContext, HighscoresActivity::class.java)
         startActivity(highscoresIntent)

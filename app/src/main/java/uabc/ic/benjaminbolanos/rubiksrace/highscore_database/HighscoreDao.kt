@@ -3,6 +3,10 @@ package uabc.ic.benjaminbolanos.rubiksrace.highscore_database
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Clase HighscoreDao que contiene las sentencias de SQLite necesarias para el funcionamiento de la
+ * base de datos.
+ */
 @Dao
 interface HighscoreDao {
 

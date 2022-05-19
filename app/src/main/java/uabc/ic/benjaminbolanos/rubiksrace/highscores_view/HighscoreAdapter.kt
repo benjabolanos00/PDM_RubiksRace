@@ -18,9 +18,14 @@ class HighscoreAdapter : ListAdapter<Highscore, HighscoreAdapter.HighscoreViewHo
     HighscoreComparator()
 ) {
 
+    var isOrderedList = false
+
+    override fun getItemViewType(position: Int): Int {
+        return if(position == 0) 1 else 2
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HighscoreViewHolder {
-        return HighscoreViewHolder.create(parent)
+        return HighscoreViewHolder.create(parent, viewType, isOrderedList)
     }
 
     override fun onBindViewHolder(holder: HighscoreViewHolder, position: Int) {
@@ -28,7 +33,7 @@ class HighscoreAdapter : ListAdapter<Highscore, HighscoreAdapter.HighscoreViewHo
         holder.bind(current)
     }
 
-    class HighscoreViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    class HighscoreViewHolder(val view: View, val viewType: Int, val isOrderedList:Boolean) : RecyclerView.ViewHolder(view) {
         val highscoreCombinacion = arrayOf<ImageView>(view.findViewById(R.id.highscore_item_combinacion_1), view.findViewById(
             R.id.highscore_item_combinacion_2
         ), view.findViewById(R.id.highscore_item_combinacion_3),
@@ -48,17 +53,18 @@ class HighscoreAdapter : ListAdapter<Highscore, HighscoreAdapter.HighscoreViewHo
             }
             highscoreTiempo.text = highscoreItem.tiempoString()
             highscoreMovimientos.text = StringBuffer("${highscoreItem.movimientos} Movimientos")
-            if(highscoreItem.recordActual){
+            Log.i("HS", "highscore i: ${highscoreItem.id} para ${highscoreItem.recordActual}")
+            if(highscoreItem.recordActual or (isOrderedList and (viewType == 1))){
                 Log.i("HS", "El id es ${highscoreItem.id} para $highscoreItem")
                 highscoreLayout.setBackgroundColor(view.resources.getColor(R.color.highscore_record, null))
             }
         }
 
         companion object {
-            fun create(parent: ViewGroup): HighscoreViewHolder {
+            fun create(parent: ViewGroup, viewType:Int, isOrderedList: Boolean): HighscoreViewHolder {
                 val view: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.highscore_item, parent, false)
-                return HighscoreViewHolder(view)
+                return HighscoreViewHolder(view, viewType, isOrderedList)
             }
         }
     }
