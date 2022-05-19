@@ -1,39 +1,46 @@
 package uabc.ic.benjaminbolanos.rubiksrace.highscores_view
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import uabc.ic.benjaminbolanos.rubiksrace.R
 import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.Highscore
 
+/**
+ * Clase HighscoreAdapter que crea un HighscoreViewHolder y lo vincula.
+ */
 class HighscoreAdapter : ListAdapter<Highscore, HighscoreAdapter.HighscoreViewHolder>(
     HighscoreComparator()
 ) {
 
-    var isOrderedList = false
-
-    override fun getItemViewType(position: Int): Int {
-        return if(position == 0) 1 else 2
-    }
-
+    /**
+     * Metodo en el cual se crea ek Holder
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HighscoreViewHolder {
-        return HighscoreViewHolder.create(parent, viewType, isOrderedList)
+        return HighscoreViewHolder.create(parent,)
     }
 
+    /**
+     * Metodo en el cual se vincula el holder a los datos
+     */
     override fun onBindViewHolder(holder: HighscoreViewHolder, position: Int) {
         val current = getItem(position)
         holder.bind(current)
     }
 
-    class HighscoreViewHolder(val view: View, val viewType: Int, val isOrderedList:Boolean) : RecyclerView.ViewHolder(view) {
+    /**
+     * Clase para obtener un Highscore y a partir de sus datos cambiar la informacion de los
+     * views del RecyclerView.
+     */
+    class HighscoreViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        /**
+         * Componentes que se encuentran en highscore_item.xml
+         */
         val highscoreCombinacion = arrayOf<ImageView>(view.findViewById(R.id.highscore_item_combinacion_1), view.findViewById(
             R.id.highscore_item_combinacion_2
         ), view.findViewById(R.id.highscore_item_combinacion_3),
@@ -45,30 +52,35 @@ class HighscoreAdapter : ListAdapter<Highscore, HighscoreAdapter.HighscoreViewHo
             ))
         val highscoreTiempo = view.findViewById<TextView>(R.id.highscore_item_tiempo)
         val highscoreMovimientos = view.findViewById<TextView>(R.id.highscore_item_movimientos)
-        val highscoreLayout = view.findViewById<ConstraintLayout>(R.id.highscore_item_layout)
 
+        /**
+         * Método que obtiene el highscore y configura los componentes para mostrar sus datos.
+         */
         fun bind(highscoreItem: Highscore) {
             for(i in 0..8){
                 highscoreItem.combinacionColores[i].let { highscoreCombinacion[i].setImageResource(it.valor) }
             }
             highscoreTiempo.text = highscoreItem.tiempoString()
             highscoreMovimientos.text = StringBuffer("${highscoreItem.movimientos} Movimientos")
-            Log.i("HS", "highscore i: ${highscoreItem.id} para ${highscoreItem.recordActual}")
-            if(highscoreItem.recordActual or (isOrderedList and (viewType == 1))){
-                Log.i("HS", "El id es ${highscoreItem.id} para $highscoreItem")
-                highscoreLayout.setBackgroundColor(view.resources.getColor(R.color.highscore_record, null))
-            }
         }
 
+        /**
+         * Companion object que contiene un metodo para crear un holder tomando como View el
+         * layout de highscore_item.xml
+         */
         companion object {
-            fun create(parent: ViewGroup, viewType:Int, isOrderedList: Boolean): HighscoreViewHolder {
+            fun create(parent: ViewGroup): HighscoreViewHolder {
                 val view: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.highscore_item, parent, false)
-                return HighscoreViewHolder(view, viewType, isOrderedList)
+                return HighscoreViewHolder(view)
             }
         }
     }
 
+    /**
+     * Clase HighscoreComparator que define como calcular si dos elementos son iguales o si
+     * los contenidos son los mismos.
+     */
     class HighscoreComparator : DiffUtil.ItemCallback<Highscore>() {
         override fun areItemsTheSame(oldItem: Highscore, newItem: Highscore): Boolean {
             return oldItem.id == newItem.id

@@ -13,7 +13,6 @@ data class Highscore(
     @ColumnInfo(name = "movimientos") val movimientos:Int,
     @ColumnInfo(name = "combinacion") val combinacionColores: Array<Color>){
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id = 0
-    @ColumnInfo(name = "recordActual") var recordActual = false
 
     override fun toString(): String{
         return "ID: $id Tiempo: $tiempo Movimientos: $movimientos"
@@ -50,6 +49,9 @@ data class Highscore(
         return result
     }
 
+    /**
+     * Funcion para comparar dos Highscore, empezando por el tiempo y despues por movimiento
+     */
     operator fun compareTo(highscore: Highscore): Int {
         return when {
             highscore.tiempo > tiempo -> -1

@@ -9,6 +9,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+/**
+ * Clase Abstracta HighscoreRoomDatabase, extiende de RoomDatabase. En su constructor se encuentra
+ * que cuenta con una tabla de Highscores
+ */
 @Database(entities = arrayOf(Highscore::class), version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class HighscoreRoomDatabase: RoomDatabase() {
@@ -58,7 +62,6 @@ abstract class HighscoreRoomDatabase: RoomDatabase() {
                     .addCallback(HighscoreDatabaseCallback(scope))
                     .build()
                 INSTANCE = instance
-                // return instance
                 instance
             }
         }
