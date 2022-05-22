@@ -10,12 +10,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 /**
- * Clase Abstracta HighscoreRoomDatabase, extiende de RoomDatabase. En su constructor se encuentra
+ * Clase Abstracta HighscoreDatabase, extiende de RoomDatabase. En su constructor se encuentra
  * que cuenta con una tabla de Highscores
  */
 @Database(entities = arrayOf(Highscore::class), version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
-abstract class HighscoreRoomDatabase: RoomDatabase() {
+abstract class HighscoreDatabase: RoomDatabase() {
 
     abstract  fun highscoreDao(): HighscoreDao
 
@@ -43,7 +43,7 @@ abstract class HighscoreRoomDatabase: RoomDatabase() {
 
     companion object {
         @Volatile
-        private var INSTANCE: HighscoreRoomDatabase? = null
+        private var INSTANCE: HighscoreDatabase? = null
 
         /**
          * Metodo para obtener la base de datos y que esta sea un singleton para no tener multiples
@@ -52,11 +52,11 @@ abstract class HighscoreRoomDatabase: RoomDatabase() {
         fun getDatabase(
             context: Context,
             scope: CoroutineScope
-        ): HighscoreRoomDatabase {
+        ): HighscoreDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    HighscoreRoomDatabase::class.java,
+                    HighscoreDatabase::class.java,
                     "highscore_database"
                 )
                     .addCallback(HighscoreDatabaseCallback(scope))

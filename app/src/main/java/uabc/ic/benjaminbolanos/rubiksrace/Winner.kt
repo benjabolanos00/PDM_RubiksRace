@@ -41,8 +41,9 @@ class Winner : AppCompatActivity() {
     private fun setInfo(){
         val bundle = intent.extras
         if(bundle != null){
-            val movsString = StringBuffer(bundle.get("movs") as Int)
-            movesText.text = movsString.append(" Movimientos")
+            val movs = bundle.get("movs") as Int
+            val movsString = StringBuffer(movs.toString()).append(" Movimientos")
+            movesText.text = movsString
             timeText.text = bundle.get("tiempo") as String
         }
     }

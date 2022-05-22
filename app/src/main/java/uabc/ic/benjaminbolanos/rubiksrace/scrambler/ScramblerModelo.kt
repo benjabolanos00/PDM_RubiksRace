@@ -4,9 +4,9 @@ import uabc.ic.benjaminbolanos.rubiksrace.util.Color
 import uabc.ic.benjaminbolanos.rubiksrace.util.Dado
 
 class ScramblerModelo(var modoDaltonico: Boolean) {
-    private var dados: Array<Dado> = Array(9) { Dado(modoDaltonico) }
+    private lateinit var dados: Array<Dado>
     private var combinacion: Array<Color> = Array(9) { Color() }
-    
+
 
     /**
      * Constructor que manda a llamar al método scramble() para crear una nueva combinación.

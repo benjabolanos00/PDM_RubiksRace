@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uabc.ic.benjaminbolanos.rubiksrace">
 
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
     <application
         android:name=".highscore_database.HighscoresApplication"
         android:allowBackup="true"
@@ -27,14 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".highscores_view.Highscores"
-            android:exported="false"
-            android:parentActivityName=".MainMenu" />
-        <activity
             android:name=".RubiksRace"
             android:exported="false" />
     </application>
-
-
-
 </manifest>

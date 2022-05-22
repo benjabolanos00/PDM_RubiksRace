@@ -6,7 +6,7 @@ import uabc.ic.benjaminbolanos.rubiksrace.util.Color
  * Clase GridModelo que modela un grid de un jugador de RubiksRace.
  */
 class GridModelo(modoDaltonico: Boolean) {
-    private val cuadros:Array<Color> = Array(25){ Color() }
+    val cuadros:Array<Color> = Array(25){ Color() }
     private val colores:Array<Color> = arrayOf(
         Color("azul", modoDaltonico),
         Color("rojo", modoDaltonico), Color("verde", modoDaltonico),
@@ -80,14 +80,6 @@ class GridModelo(modoDaltonico: Boolean) {
     }
 
     /**
-     * Método que retorna el grid del jugador.
-     * @return un Array<Color> con los colores de los 25 cuadros del grid.
-     */
-    fun getGrid():Array<Color>{
-        return cuadros
-    }
-
-    /**
      * Método que toma los valores de los 9 cuadros que están en el centro del grid y los retorna en un
      * Array.
      * @return un Array<Color> de los 9 cuadros del centro.
@@ -103,9 +95,4 @@ class GridModelo(modoDaltonico: Boolean) {
         }
         return centro
     }
-
-    fun selectCuadro(i: Int): Int{
-        return cuadros[i].getSelected()
-    }
-
 }

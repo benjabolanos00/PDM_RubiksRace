@@ -13,6 +13,26 @@ class Color(var nombre: String, var daltonismo: Boolean) {
     //var colorBlind: Boolean = false;
     //var nombre:String = "black"
 
+    companion object{
+        fun getSelectedFromID(id:Int):Int{
+            return when(id){
+                R.drawable.cuadro_amarillo -> R.drawable.cuadro_amarillo_selected
+                R.drawable.cuadro_blanco -> R.drawable.cuadro_blanco_selected
+                R.drawable.cuadro_azul -> R.drawable.cuadro_azul_selected
+                R.drawable.cuadro_naranja -> R.drawable.cuadro_naranja_selected
+                R.drawable.cuadro_rojo -> R.drawable.cuadro_rojo_selected
+                R.drawable.cuadro_verde -> R.drawable.cuadro_verde_selected
+                R.drawable.cuadro_amarillo_daltonico -> R.drawable.cuadro_amarillo_daltonico_selected
+                R.drawable.cuadro_blanco_daltonico -> R.drawable.cuadro_blanco_daltonico_selected
+                R.drawable.cuadro_azul_daltonico -> R.drawable.cuadro_azul_daltonico_selected
+                R.drawable.cuadro_rojo_daltonico -> R.drawable.cuadro_rojo_daltonico_selected
+                R.drawable.cuadro_naranja_daltonico -> R.drawable.cuadro_naranja_daltonico_selected
+                R.drawable.cuadro_verde_daltonico -> R.drawable.cuadro_verde_daltonico_selected
+                else-> R.drawable.cuadro_negro_selected
+            }
+        }
+    }
+
     /**
      * Constructor que inicializa el color con un color aleatorio.
      */

@@ -100,9 +100,12 @@
             android:text="00:00:00"
             android:textColor="@color/black"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@id/highscore_item_combinacion_3"
+            app:layout_constraintBottom_toBottomOf="@+id/highscore_item_combinacion_6"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_6" />
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_6"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.514" />
 
         <TextView
             android:id="@+id/highscore_item_movimientos"
@@ -112,20 +115,12 @@
             android:text="00 Movimientos"
             android:textColor="@color/black"
             android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
             app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_6"
-            app:layout_constraintTop_toBottomOf="@id/highscore_item_tiempo" />
-
-    <Button
-        android:id="@+id/highscore_item_eliminar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#D33333"
-        android:text="Eliminar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_9"
-        app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_6" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.72" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
