@@ -139,9 +139,11 @@ class RubiksRace() : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val preferencias = getSharedPreferences("colores", Context.MODE_PRIVATE)
-        val colorSecundario = preferencias.getInt("color_secundario", R.color.fondo_turquesa)
-        val colorPrimario = preferencias.getInt("color_primario", R.color.white)
-        cambiarColores(colorPrimario, colorSecundario)
+        if(preferencias.contains("color_secundario")) {
+            val colorSecundario = preferencias.getInt("color_secundario", R.color.fondo_turquesa)
+            val colorPrimario = preferencias.getInt("color_primario", R.color.white)
+            cambiarColores(colorPrimario, colorSecundario)
+        }
     }
 
     private fun cambiarColores(colorPrimario:Int, colorSecundario:Int){

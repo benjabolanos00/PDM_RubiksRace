@@ -57,9 +57,11 @@ class HighscoresActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val preferencias = getSharedPreferences("colores", Context.MODE_PRIVATE)
-        val colorPrimario = preferencias.getInt("color_primario", R.color.fondo_turquesa)
-        val colorSecundario = preferencias.getInt("color_secundario", R.color.fondo_turquesa)
-        cambiarColores(colorPrimario, colorSecundario)
+        if(preferencias.contains("color_secundario")) {
+            val colorPrimario = preferencias.getInt("color_primario", R.color.fondo_turquesa)
+            val colorSecundario = preferencias.getInt("color_secundario", R.color.fondo_turquesa)
+            cambiarColores(colorPrimario, colorSecundario)
+        }
     }
 
     fun cambiarColores(colorPrimario:Int, colorSecundario:Int){

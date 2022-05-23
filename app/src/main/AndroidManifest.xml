@@ -7,9 +7,9 @@
     <application
         android:name=".highscore_database.HighscoresApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_rubiks"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_rubiks_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Practica3">
         <activity

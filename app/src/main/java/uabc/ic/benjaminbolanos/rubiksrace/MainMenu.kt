@@ -27,9 +27,11 @@ class MainMenu : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val preferencias = getSharedPreferences("colores", Context.MODE_PRIVATE)
-        val colorFondo = preferencias.getInt("color_secundario", R.color.fondo_turquesa)
-        val colorTexto = preferencias.getInt("color_primario", R.color.white)
-        cambiarColores(colorTexto, colorFondo)
+        if(preferencias.contains("color_secundario")) {
+            val colorFondo = preferencias.getInt("color_secundario", R.color.fondo_turquesa)
+            val colorTexto = preferencias.getInt("color_primario", R.color.white)
+            cambiarColores(colorTexto, colorFondo)
+        }
     }
 
     private fun cambiarColores(colorPrimario:Int, colorSecundario:Int){

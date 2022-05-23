@@ -19,40 +19,44 @@ class Winner : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_winner)
+        initViews()
+        setInfo()
     }
 
     override fun onResume() {
         super.onResume()
         val preferencias = getSharedPreferences("colores", Context.MODE_PRIVATE)
-        val colorSecundario = preferencias.getInt("color_secundario", R.color.fondo_turquesa)
-        val colorPrimario = preferencias.getInt("color_primario", R.color.white)
-        initViews(colorPrimario, colorSecundario)
-        setInfo()
+        if(preferencias.contains("color_secundario")){
+            val colorSecundario = preferencias.getInt("color_secundario", R.color.fondo_turquesa)
+            val colorPrimario = preferencias.getInt("color_primario", R.color.white)
+            cambiarColores(colorPrimario, colorSecundario)
+        }
+    }
+
+    fun cambiarColores(colorPrimario: Int, colorSecundario:Int){
+        movesText.setTextColor(colorPrimario)
+        timeText.setTextColor(colorPrimario)
+        val fondo = findViewById<ConstraintLayout>(R.id.winner_layout)
+        fondo.setBackgroundColor(colorSecundario)
+        val felicidadesText = findViewById<TextView>(R.id.winner_title_text)
+        felicidadesText.setTextColor(colorPrimario)
+
+        highscoresButton.apply {
+            setTextColor(colorSecundario)
+            backgroundTintList = ColorStateList.valueOf(colorPrimario)
+            backgroundTintMode = PorterDuff.Mode.SRC_ATOP
+        }
     }
 
     /**
      * Metodo que inicializa los Views de la Actividad y crea el onClickListener del highscoreButton
      * el cual crea un intent que va hacia HighscoresActivity
      */
-    private fun initViews(colorPrimario: Int, colorSecundario:Int){
+    private fun initViews(){
         movesText = findViewById(R.id.winner_moves_text)
-        movesText.setTextColor(colorPrimario)
-
         timeText = findViewById(R.id.winner_time_text)
-        timeText.setTextColor(colorPrimario)
 
-        val fondo = findViewById<ConstraintLayout>(R.id.winner_layout)
-        fondo.setBackgroundColor(colorSecundario)
-
-        val felicidadesText = findViewById<TextView>(R.id.winner_title_text)
-        felicidadesText.setTextColor(colorPrimario)
-
-        highscoresButton = findViewById(R.id.winner_highscores_button)
-        highscoresButton.apply {
-            setTextColor(colorSecundario)
-            backgroundTintList = ColorStateList.valueOf(colorPrimario)
-            backgroundTintMode = PorterDuff.Mode.SRC_ATOP
-
+        highscoresButton = findViewById<Button?>(R.id.winner_highscores_button).apply {
             setOnClickListener {
                 val intent = Intent(applicationContext, HighscoresActivity::class.java)
                 finish()
