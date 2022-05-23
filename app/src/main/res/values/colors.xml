@@ -9,4 +9,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="color2">#A8F8E2</color>
     <color name="highscore_record">#6feec7</color>
+    <color name="fondo_turquesa">#0097A7</color>
+    <color name="fondo_blanco">#FFFEFA</color>
+    <color name="fondo_gris_oscuro">#2B2D2F</color>
+
+    <color name="boton_rosa">#CE7B91</color>
+    <color name="boton_morado">#E7E247</color>
+    <color name="boton_verde">#88AB75</color>
+    <color name="boton_crema">#edd09f</color>
 </resources>

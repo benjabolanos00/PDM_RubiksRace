@@ -2,14 +2,24 @@ package uabc.ic.benjaminbolanos.rubiksrace
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.PorterDuff
+
 import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.view.ContextMenu
+import android.view.MenuItem
 import android.view.View
+
 import android.widget.Button
 import android.widget.Toast
+
 import androidx.activity.viewModels
+import androidx.constraintlayout.widget.ConstraintLayout
+
 import uabc.ic.benjaminbolanos.rubiksrace.grid.Grid
 import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.*
 import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.HighscoreViewModel
@@ -40,6 +50,7 @@ class RubiksRace() : AppCompatActivity() {
         setContentView(R.layout.activity_rubiksrace)
         setModoDaltonico()
         iniciarBotones()
+        crearMenus()
         cronometro.iniciar()
     }
 
@@ -85,4 +96,70 @@ class RubiksRace() : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun crearMenus(){
+        registerForContextMenu(findViewById(R.id.rubiksrace_layout))
+    }
+
+    override fun onCreateContextMenu( menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        val inflater = menuInflater
+        menu?.setHeaderTitle("Cambiar color de fondo:")
+        inflater.inflate(R.menu.background_color_menu, menu)
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        val preferences = getSharedPreferences("colores", Context.MODE_PRIVATE)
+        val editor = preferences.edit()
+        return when(item.itemId){
+            R.id.bgcolor_menu_item1 -> {
+                Toast.makeText(applicationContext, "Turquesa", Toast.LENGTH_SHORT).show()
+                editor.putInt("color_primario", resources.getColor(R.color.white,null))
+                editor.putInt("color_secundario",resources.getColor(R.color.fondo_turquesa,null)).apply()
+                cambiarColores(resources.getColor(R.color.white,null),resources.getColor(R.color.fondo_turquesa,null))
+                true
+            }
+            R.id.bgcolor_menu_item2 -> {
+                Toast.makeText(applicationContext, "Blanco", Toast.LENGTH_SHORT).show()
+                editor.putInt("color_primario", resources.getColor(R.color.fondo_gris_oscuro,null))
+                editor.putInt("color_secundario",resources.getColor(R.color.fondo_blanco,null)).apply()
+                cambiarColores(resources.getColor(R.color.fondo_gris_oscuro,null),resources.getColor(R.color.fondo_blanco,null))
+                true
+            }
+            R.id.bgcolor_menu_item3 -> {
+                Toast.makeText(applicationContext, "Gris Oscuro", Toast.LENGTH_SHORT).show()
+                editor.putInt("color_primario", resources.getColor(R.color.white,null))
+                editor.putInt("color_secundario",resources.getColor(R.color.fondo_gris_oscuro,null)).apply()
+                cambiarColores(resources.getColor(R.color.fondo_blanco,null),resources.getColor(R.color.fondo_gris_oscuro,null))
+                true
+            }
+            else -> false
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val preferencias = getSharedPreferences("colores", Context.MODE_PRIVATE)
+        val colorSecundario = preferencias.getInt("color_secundario", R.color.fondo_turquesa)
+        val colorPrimario = preferencias.getInt("color_primario", R.color.white)
+        cambiarColores(colorPrimario, colorSecundario)
+    }
+
+    private fun cambiarColores(colorPrimario:Int, colorSecundario:Int){
+        val fondo = findViewById<ConstraintLayout>(R.id.rubiksrace_layout)
+        fondo.setBackgroundColor(colorSecundario)
+
+        scrambleButton.apply {
+            setTextColor(colorSecundario)
+            backgroundTintList = ColorStateList.valueOf(colorPrimario)
+            backgroundTintMode = PorterDuff.Mode.SRC_ATOP
+        }
+
+        slamButton.apply {
+            setTextColor(colorSecundario)
+            backgroundTintList = ColorStateList.valueOf(colorPrimario)
+            backgroundTintMode = PorterDuff.Mode.SRC_ATOP
+        }
+    }
+
 }
+

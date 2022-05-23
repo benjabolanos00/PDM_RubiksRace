@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bgcolor_menu_item1"
+        android:title="Azul turquesa"
+        />
+    <item
+        android:id="@+id/bgcolor_menu_item2"
+        android:title="Blanco"
+        />
+    <item
+        android:id="@+id/bgcolor_menu_item3"
+        android:title="Gris oscuro"
+        />
+</menu>

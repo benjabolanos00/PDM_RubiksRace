@@ -1,10 +1,12 @@
 package uabc.ic.benjaminbolanos.rubiksrace.highscores_view
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SwitchCompat
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import uabc.ic.benjaminbolanos.rubiksrace.R
@@ -50,5 +52,30 @@ class HighscoresActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val preferencias = getSharedPreferences("colores", Context.MODE_PRIVATE)
+        val colorPrimario = preferencias.getInt("color_primario", R.color.fondo_turquesa)
+        val colorSecundario = preferencias.getInt("color_secundario", R.color.fondo_turquesa)
+        cambiarColores(colorPrimario, colorSecundario)
+    }
+
+    fun cambiarColores(colorPrimario:Int, colorSecundario:Int){
+        val fondo = findViewById<ConstraintLayout>(R.id.highscores_layout)
+        fondo.setBackgroundColor(colorSecundario)
+
+        val resultadoText = findViewById<TextView>(R.id.highscores_resultados_text)
+        resultadoText.setTextColor(colorPrimario)
+
+        val tituloText = findViewById<TextView>(R.id.highscores_title_text)
+        tituloText.setTextColor(colorPrimario)
+
+        val ordenarText = findViewById<TextView>(R.id.highscores_ordenar_text)
+        ordenarText.setTextColor(colorPrimario)
+
+        val fechaText = findViewById<TextView>(R.id.highscores_fecha_text)
+        fechaText.setTextColor(colorPrimario)
     }
 }

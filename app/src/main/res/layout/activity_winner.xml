@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0097A7"
-    tools:context=".Winner">
+    tools:context=".Winner"
+    android:id="@+id/winner_layout">
 
     <TextView
         android:id="@+id/winner_title_text"
@@ -27,7 +28,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/winner_moves_holder"
-        android:textColor="@color/color2"
+        android:textColor="@color/white"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +43,7 @@
         android:layout_height="wrap_content"
         android:text="@string/winner_time_holder"
         android:textAlignment="center"
-        android:textColor="#A7FFEB"
+        android:textColor="@color/white"
         android:textSize="70sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -52,7 +53,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.448" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/winner_highscores_button"
         android:layout_width="158dp"
         android:layout_height="71dp"
@@ -62,5 +63,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.759" />
+        app:layout_constraintVertical_bias="0.759"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/fondo_turquesa"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

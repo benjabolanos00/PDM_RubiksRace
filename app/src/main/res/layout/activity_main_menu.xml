@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainMenu"
-    android:background="#0097A7">
+    android:background="@color/fondo_turquesa"
+    android:id="@+id/main_menu_layout">
 
     <TextView
         android:id="@+id/main_menu_title_text"
@@ -21,7 +22,7 @@
         app:layout_constraintVertical_bias="0.25"
         android:textColor="@color/white"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/main_menu_new_game_button"
         android:layout_width="150dp"
         android:layout_height="60dp"
@@ -32,9 +33,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_menu_title_text"
         app:layout_constraintVertical_bias="0.225"
-        android:onClick="newGame"/>
+        android:onClick="newGame"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/fondo_turquesa"
+        app:cornerRadius="100dp"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/main_menu_highscores_button"
         android:layout_width="150dp"
         android:layout_height="60dp"
@@ -45,7 +49,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_menu_title_text"
         app:layout_constraintVertical_bias="0.375"
-        android:onClick="goToHighscores"/>
+        android:onClick="goToHighscores"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/fondo_turquesa"
+        app:cornerRadius="100dp"/>
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/main_menu_colorblind_switch"
@@ -56,7 +63,7 @@
         app:layout_constraintHorizontal_bias="0.7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_menu_title_text"
-        app:layout_constraintVertical_bias="0.497" />
+        app:layout_constraintVertical_bias="0.502" />
 
     <TextView
         android:id="@+id/main_menu_colorblind_text"
@@ -65,10 +72,11 @@
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/main_menu_colorblind_text"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.298"
+        app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_menu_title_text"
         app:layout_constraintVertical_bias="0.502" />
