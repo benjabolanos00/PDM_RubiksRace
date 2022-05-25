@@ -33,7 +33,7 @@
             android:id="@+id/highscore_item_combinacion_3"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/cuadro_blanco"
+            android:background="@drawable/cuadro_amarillo"
             android:contentDescription="@string/cuadro_de_scrambler"
             app:layout_constraintStart_toEndOf="@+id/highscore_item_combinacion_2"
             app:layout_constraintTop_toTopOf="parent" />
@@ -78,7 +78,7 @@
             android:id="@+id/highscore_item_combinacion_8"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/cuadro_blanco"
+            android:background="@drawable/cuadro_amarillo"
             android:contentDescription="@string/cuadro_de_scrambler"
             app:layout_constraintStart_toEndOf="@id/highscore_item_combinacion_7"
             app:layout_constraintTop_toBottomOf="@id/highscore_item_combinacion_5" />

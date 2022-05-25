@@ -4,10 +4,11 @@ import android.widget.GridLayout
 import android.widget.ImageView
 import androidx.core.view.get
 import uabc.ic.benjaminbolanos.rubiksrace.util.Color
+import uabc.ic.benjaminbolanos.rubiksrace.util.EstiloCuadro
 
-class Grid(private val gridLayout: GridLayout, modoDaltonico: Boolean) {
+class Grid(private val gridLayout: GridLayout, private var estilo: Int) {
 
-    private val gridModelo = GridModelo(modoDaltonico)
+    private val gridModelo = GridModelo()
     private val gridView = GridView(gridLayout)
 
     private var seleccionesGrid = arrayOf(-1,-1)
@@ -16,7 +17,7 @@ class Grid(private val gridLayout: GridLayout, modoDaltonico: Boolean) {
     init {
         iniciarListeners()
         gridModelo.crearGrid()
-        gridView.actualizar(gridModelo.cuadros)
+        gridView.actualizar(gridModelo.cuadros, estilo)
     }
 
     private fun iniciarListeners(){
@@ -34,9 +35,14 @@ class Grid(private val gridLayout: GridLayout, modoDaltonico: Boolean) {
         }
     }
 
+    fun cambiarEstilo(nuevoEstilo: Int){
+        estilo = nuevoEstilo
+        gridView.actualizar(gridModelo.cuadros, estilo)
+    }
+
     private fun realizarIntercambio(){
         gridModelo.intercambiar(seleccionesGrid[0],seleccionesGrid[1])
-        gridView.actualizar(gridModelo.cuadros)
+        gridView.actualizar(gridModelo.cuadros, estilo)
     }
 
     fun hayGanador(combinacionScrambler: Array<Color>): Boolean{

@@ -68,7 +68,7 @@ data class Highscore(
      */
     companion object{
         fun random(): Highscore {
-            val comb = Array(9){ Color() }
+            val comb = Array(9){ Color.randomColor() }
             val t:Double = Random.nextDouble(360.0)
             val movs:Int = Random.nextInt(250)
             return Highscore(t, movs, comb)

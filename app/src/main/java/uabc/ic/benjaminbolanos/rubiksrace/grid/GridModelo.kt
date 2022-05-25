@@ -5,13 +5,11 @@ import uabc.ic.benjaminbolanos.rubiksrace.util.Color
 /**
  * Clase GridModelo que modela un grid de un jugador de RubiksRace.
  */
-class GridModelo(modoDaltonico: Boolean) {
-    val cuadros:Array<Color> = Array(25){ Color() }
+class GridModelo() {
+    val cuadros:Array<Color> = Array(25){ Color("negro") }
     private val colores:Array<Color> = arrayOf(
-        Color("azul", modoDaltonico),
-        Color("rojo", modoDaltonico), Color("verde", modoDaltonico),
-        Color("amarillo", modoDaltonico), Color("blanco", modoDaltonico),
-        Color("naranja", modoDaltonico)
+        Color("azul"), Color("rojo"), Color("verde"),
+        Color("amarillo"), Color("morado"), Color("naranja")
     )
     var movimientos:Int = 0
 
@@ -76,7 +74,7 @@ class GridModelo(modoDaltonico: Boolean) {
             }
             i++
         }
-        cuadros[i] = Color("negro", daltonismo = false)
+        cuadros[i] = Color("negro")
     }
 
     /**
@@ -86,7 +84,7 @@ class GridModelo(modoDaltonico: Boolean) {
      */
     fun getCentro():Array<Color>{
         var j = 0
-        val centro:Array<Color> = Array(9){ Color() }
+        val centro:Array<Color> = Array(9){ Color("negro") }
         for(i in 0..24){
             if(i in 6..18 && i%5!=0 && (i+1)%5!=0){
                 centro[j] = cuadros[i]

@@ -1,68 +1,126 @@
 package uabc.ic.benjaminbolanos.rubiksrace.util
 
 import android.util.Log
+import kotlinx.serialization.Serializable
 import uabc.ic.benjaminbolanos.rubiksrace.R
 import kotlin.random.Random
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 
 @Serializable
-class Color(var nombre: String, var daltonismo: Boolean) {
-    var valor:Int = 0
+class Color(var nombre: String) {
+    private var estiloActual = EstiloCuadro.NORMAL
+
+    fun getValor(estilo:Int): Int{
+        estiloActual = estilo
+        return when(estiloActual){
+            EstiloCuadro.NORMAL -> getNormal()
+            EstiloCuadro.DALTONICO -> getDaltonico()
+            EstiloCuadro.PASTEL -> getPastel()
+            else -> 0
+        }
+    }
+
+    fun getSelected(): Int{
+        return when(estiloActual){
+            EstiloCuadro.NORMAL ->{
+                when(nombre){
+                    "azul" -> R.drawable.cuadro_azul_selected
+                    "rojo" -> R.drawable.cuadro_rojo_selected
+                    "verde" -> R.drawable.cuadro_verde_selected
+                    "amarillo" ->  R.drawable.cuadro_amarillo_selected
+                    "morado" -> R.drawable.cuadro_morado_selected
+                    "naranja" ->  R.drawable.cuadro_naranja_selected
+                    else -> R.drawable.cuadro_negro_selected
+                }
+            }
+            EstiloCuadro.DALTONICO-> {
+                when(nombre){
+                    "azul" -> R.drawable.cuadro_azul_daltonico_selected
+                    "rojo" -> R.drawable.cuadro_rojo_daltonico_selected
+                    "verde" -> R.drawable.cuadro_verde_daltonico_selected
+                    "amarillo" ->  R.drawable.cuadro_amarillo_daltonico_selected
+                    "morado" -> R.drawable.cuadro_morado_daltonico_selected
+                    "naranja" -> R.drawable.cuadro_naranja_daltonico_selected
+                    else -> R.drawable.cuadro_negro_selected
+                }
+            }
+            EstiloCuadro.PASTEL -> {
+                return when(nombre){
+                    "azul" -> R.drawable.cuadro_azul_pastel_selected
+                    "rojo" -> R.drawable.cuadro_rojo_pastel_selected
+                    "verde" -> R.drawable.cuadro_verde_pastel_selected
+                    "amarillo" ->  R.drawable.cuadro_amarillo_pastel_selected
+                    "morado" -> R.drawable.cuadro_morado_pastel_selected
+                    "naranja" ->  R.drawable.cuadro_naranja_pastel_selected
+                    else -> R.drawable.cuadro_negro_selected
+                }
+            }
+            else -> 0
+        }
+    }
+
+    private fun getNormal(): Int{
+        return when(nombre){
+            "azul" -> R.drawable.cuadro_azul
+            "rojo" -> R.drawable.cuadro_rojo
+            "verde" -> R.drawable.cuadro_verde
+            "amarillo" ->  R.drawable.cuadro_amarillo
+            "morado" -> R.drawable.cuadro_morado
+            "naranja" ->  R.drawable.cuadro_naranja
+            else -> R.drawable.cuadro_negro
+        }
+    }
+
+    private fun getDaltonico(): Int{
+        return when(nombre){
+            "azul" -> R.drawable.cuadro_azul_daltonico
+            "rojo" -> R.drawable.cuadro_rojo_daltonico
+            "verde" -> R.drawable.cuadro_verde_daltonico
+            "amarillo" ->  R.drawable.cuadro_amarillo_daltonico
+            "morado" -> R.drawable.cuadro_morado_daltonico
+            "naranja" -> R.drawable.cuadro_naranja_daltonico
+            else -> R.drawable.cuadro_negro
+        }
+    }
+
+    private fun getPastel(): Int{
+        return when(nombre){
+            "azul" -> R.drawable.cuadro_azul_pastel
+            "rojo" -> R.drawable.cuadro_rojo_pastel
+            "verde" -> R.drawable.cuadro_verde_pastel
+            "amarillo" ->  R.drawable.cuadro_amarillo_pastel
+            "morado" -> R.drawable.cuadro_morado_pastel
+            "naranja" ->  R.drawable.cuadro_naranja_pastel
+            else -> R.drawable.cuadro_negro
+        }
+    }
+
+    //var valor:Int = 0
     //var colorBlind: Boolean = false;
     //var nombre:String = "black"
 
+
     companion object{
-        fun getSelectedFromID(id:Int):Int{
-            return when(id){
-                R.drawable.cuadro_amarillo -> R.drawable.cuadro_amarillo_selected
-                R.drawable.cuadro_blanco -> R.drawable.cuadro_blanco_selected
-                R.drawable.cuadro_azul -> R.drawable.cuadro_azul_selected
-                R.drawable.cuadro_naranja -> R.drawable.cuadro_naranja_selected
-                R.drawable.cuadro_rojo -> R.drawable.cuadro_rojo_selected
-                R.drawable.cuadro_verde -> R.drawable.cuadro_verde_selected
-                R.drawable.cuadro_amarillo_daltonico -> R.drawable.cuadro_amarillo_daltonico_selected
-                R.drawable.cuadro_blanco_daltonico -> R.drawable.cuadro_blanco_daltonico_selected
-                R.drawable.cuadro_azul_daltonico -> R.drawable.cuadro_azul_daltonico_selected
-                R.drawable.cuadro_rojo_daltonico -> R.drawable.cuadro_rojo_daltonico_selected
-                R.drawable.cuadro_naranja_daltonico -> R.drawable.cuadro_naranja_daltonico_selected
-                R.drawable.cuadro_verde_daltonico -> R.drawable.cuadro_verde_daltonico_selected
-                else-> R.drawable.cuadro_negro_selected
+        /**
+         * Método que cambia los valores del color a uno aleatorio. El color negro no puede salir.
+         */
+        fun randomColor(): Color{
+            Log.i("HS", "EQUISDE??")
+            return when(Random.nextInt(0,6)){
+                0 -> Color("azul")
+                1 -> Color("rojo")
+                2 -> Color("verde")
+                3 -> Color("amarillo")
+                4 -> Color("morado")
+                5 -> Color("naranja")
+                else ->{
+                    Color("negro")
+                }
             }
         }
     }
 
+/*
     /**
-     * Constructor que inicializa el color con un color aleatorio.
-     */
-    init {
-        setColor(nombre, daltonismo)
-        //randomColor()
-        //val json = Json.encodeToString(this)
-    }
-
-    /**
-     * Constructor que inicializa el color a partir de su nombre, si esta seleccionado, y si es para daltonicos
-    */
-    constructor() : this("color", false) {
-        randomColor()
-    }
-
-    /**
-     * Método que cambia los valores del color a uno aleatorio. El color negro no puede salir.
-     */
-    private fun randomColor(){
-        when(Random.nextInt(0,6)){
-            0 -> setColor("azul", colorBlind = false)
-            1 -> setColor("rojo", colorBlind = false)
-            2 -> setColor("verde", colorBlind = false)
-            3 -> setColor("amarillo", colorBlind = false)
-            4 -> setColor("blanco", colorBlind = false)
-            5 -> setColor("naranja", colorBlind = false)
-        }
-    }
-
     fun getSelected(): Int{
         if(daltonismo){
             return when(nombre){
@@ -113,4 +171,5 @@ class Color(var nombre: String, var daltonismo: Boolean) {
             }
         }
     }
+    */*/
 }

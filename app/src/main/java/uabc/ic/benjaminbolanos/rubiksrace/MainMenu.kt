@@ -9,14 +9,18 @@ import android.os.Bundle
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.widget.SwitchCompat
+import android.widget.Button
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.get
+import androidx.core.view.iterator
+import androidx.core.view.size
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.button.MaterialButtonToggleGroup
 import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.HighscoresActivity
 
 class MainMenu : AppCompatActivity() {
+
+    lateinit var toggleGroup: MaterialButtonToggleGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +30,30 @@ class MainMenu : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        setToggleGroup()
+        setConfig()
+        setColores()
+    }
+
+    private fun setConfig(){
+        val config = getSharedPreferences("config", Context.MODE_PRIVATE)
+        if(config.contains("estilo")){
+            val estilo = config.getInt("estilo",0)
+            toggleGroup.check(toggleGroup[estilo].id)
+        }
+    }
+
+    private fun setToggleGroup(){
+        toggleGroup = findViewById(R.id.main_menu_estilo_toggle_group)
+        for(i in 0 until toggleGroup.size){
+            toggleGroup[i].setOnClickListener {
+                val config = getSharedPreferences("config", Context.MODE_PRIVATE)
+                config.edit().putInt("estilo",i).apply()
+            }
+        }
+    }
+
+    private fun setColores(){
         val preferencias = getSharedPreferences("colores", Context.MODE_PRIVATE)
         if(preferencias.contains("color_secundario")) {
             val colorFondo = preferencias.getInt("color_secundario", R.color.fondo_turquesa)
@@ -36,10 +64,14 @@ class MainMenu : AppCompatActivity() {
 
     private fun cambiarColores(colorPrimario:Int, colorSecundario:Int){
         val fondo = findViewById<ConstraintLayout>(R.id.main_menu_layout)
-        val tituloText = findViewById<TextView>(R.id.main_menu_title_text)
-        val daltonicoText = findViewById<TextView>(R.id.main_menu_colorblind_text)
         val nuevoJuegoButton = findViewById<MaterialButton>(R.id.main_menu_new_game_button)
         val highscoresButton = findViewById<MaterialButton>(R.id.main_menu_highscores_button)
+
+        for(b in toggleGroup){
+            b as Button
+            b.setTextColor(colorPrimario)
+        }
+
         nuevoJuegoButton.apply {
             setTextColor(colorSecundario)
             backgroundTintList = ColorStateList.valueOf(colorPrimario)
@@ -50,8 +82,6 @@ class MainMenu : AppCompatActivity() {
             backgroundTintList = ColorStateList.valueOf(colorPrimario)
             backgroundTintMode = PorterDuff.Mode.SRC_ATOP
         }
-        tituloText.setTextColor(colorPrimario)
-        daltonicoText.setTextColor(colorPrimario)
         fondo.setBackgroundColor(colorSecundario)
     }
 
@@ -60,9 +90,7 @@ class MainMenu : AppCompatActivity() {
      * daltonico.
      */
     fun newGame(view: View){
-        val switch = findViewById<SwitchCompat>(R.id.main_menu_colorblind_switch)
         val newGameIntent = Intent(applicationContext, RubiksRace::class.java)
-        newGameIntent.putExtra("ColorBlindMode", switch.isChecked)
         startActivity(newGameIntent)
     }
 
@@ -86,21 +114,18 @@ class MainMenu : AppCompatActivity() {
         val editor = preferences.edit()
         return when(item.itemId){
             R.id.bgcolor_menu_item1 -> {
-                Toast.makeText(applicationContext, "Turquesa", Toast.LENGTH_SHORT).show()
                 editor.putInt("color_primario", resources.getColor(R.color.white,null))
                 editor.putInt("color_secundario",resources.getColor(R.color.fondo_turquesa,null)).apply()
                 cambiarColores(resources.getColor(R.color.white,null),resources.getColor(R.color.fondo_turquesa,null))
                 true
             }
             R.id.bgcolor_menu_item2 -> {
-                Toast.makeText(applicationContext, "Blanco", Toast.LENGTH_SHORT).show()
                 editor.putInt("color_primario", resources.getColor(R.color.fondo_gris_oscuro,null))
                 editor.putInt("color_secundario",resources.getColor(R.color.fondo_blanco,null)).apply()
                 cambiarColores(resources.getColor(R.color.fondo_gris_oscuro,null),resources.getColor(R.color.fondo_blanco,null))
                 true
             }
             R.id.bgcolor_menu_item3 -> {
-                Toast.makeText(applicationContext, "Gris Oscuro", Toast.LENGTH_SHORT).show()
                 editor.putInt("color_primario", resources.getColor(R.color.white,null))
                 editor.putInt("color_secundario",resources.getColor(R.color.fondo_gris_oscuro,null)).apply()
                 cambiarColores(resources.getColor(R.color.fondo_blanco,null),resources.getColor(R.color.fondo_gris_oscuro,null))

@@ -1,5 +1,6 @@
 package uabc.ic.benjaminbolanos.rubiksrace.highscores_view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,12 +18,13 @@ import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.Highscore
 class HighscoreAdapter : ListAdapter<Highscore, HighscoreAdapter.HighscoreViewHolder>(
     HighscoreComparator()
 ) {
+    var estilo:Int = 2
 
     /**
      * Metodo en el cual se crea ek Holder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HighscoreViewHolder {
-        return HighscoreViewHolder.create(parent,)
+        return HighscoreViewHolder.create(parent, estilo)
     }
 
     /**
@@ -37,7 +39,7 @@ class HighscoreAdapter : ListAdapter<Highscore, HighscoreAdapter.HighscoreViewHo
      * Clase para obtener un Highscore y a partir de sus datos cambiar la informacion de los
      * views del RecyclerView.
      */
-    class HighscoreViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class HighscoreViewHolder(view: View, val estilo: Int) : RecyclerView.ViewHolder(view) {
         /**
          * Componentes que se encuentran en highscore_item.xml
          */
@@ -58,7 +60,8 @@ class HighscoreAdapter : ListAdapter<Highscore, HighscoreAdapter.HighscoreViewHo
          */
         fun bind(highscoreItem: Highscore) {
             for(i in 0..8){
-                highscoreItem.combinacionColores[i].let { highscoreCombinacion[i].setImageResource(it.valor) }
+                highscoreItem.combinacionColores[i].let { highscoreCombinacion[i].setImageResource(it.getValor(estilo)) }
+                Log.i("HS", "Valor es ${highscoreItem.combinacionColores[i].getValor(estilo)}")
             }
             highscoreTiempo.text = highscoreItem.tiempoString()
             highscoreMovimientos.text = StringBuffer("${highscoreItem.movimientos} Movimientos")
@@ -69,10 +72,10 @@ class HighscoreAdapter : ListAdapter<Highscore, HighscoreAdapter.HighscoreViewHo
          * layout de highscore_item.xml
          */
         companion object {
-            fun create(parent: ViewGroup): HighscoreViewHolder {
+            fun create(parent: ViewGroup, estilo:Int): HighscoreViewHolder {
                 val view: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.highscore_item, parent, false)
-                return HighscoreViewHolder(view)
+                return HighscoreViewHolder(view, estilo)
             }
         }
     }

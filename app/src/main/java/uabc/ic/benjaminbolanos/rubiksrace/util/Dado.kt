@@ -3,12 +3,10 @@ package uabc.ic.benjaminbolanos.rubiksrace.util
 /**
  * Clase Dado que modela un dado de seis lados. Cada lado es un color distinto.
  */
-class Dado(modoDaltonico: Boolean) {
+class Dado() {
     private val colores:Array<Color> = arrayOf(
-        Color("azul", modoDaltonico),
-        Color("rojo", modoDaltonico), Color("verde", modoDaltonico),
-        Color("amarillo", modoDaltonico), Color("blanco", modoDaltonico),
-        Color("naranja", modoDaltonico)
+        Color("azul"), Color("rojo"), Color("verde"),
+        Color("amarillo"), Color("morado"), Color("naranja")
     )
     private var caraVisible: Color
     private var caraInt:Int = 0

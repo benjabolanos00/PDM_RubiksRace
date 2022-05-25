@@ -26,6 +26,7 @@ import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.HighscoreViewModel
 import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.HighscoreViewModelFactory
 import uabc.ic.benjaminbolanos.rubiksrace.scrambler.Scrambler
 import uabc.ic.benjaminbolanos.rubiksrace.util.Cronometro
+import uabc.ic.benjaminbolanos.rubiksrace.util.EstiloCuadro
 
 class RubiksRace() : AppCompatActivity() {
 
@@ -48,20 +49,17 @@ class RubiksRace() : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rubiksrace)
-        setModoDaltonico()
+        setEstilo()
         iniciarBotones()
         crearMenus()
         cronometro.iniciar()
     }
 
-    private fun setModoDaltonico(){
-        val data = intent.extras
-        var modoDaltonico = false
-        if(data != null){
-            modoDaltonico = data.getBoolean("ColorBlindMode")
-        }
-        grid = Grid(findViewById(R.id.player_grid), modoDaltonico)
-        scrambler = Scrambler(findViewById(R.id.scrambler_grid), modoDaltonico)
+    private fun setEstilo(){
+        val config = getSharedPreferences("config", Context.MODE_PRIVATE)
+        val estilo = config.getInt("estilo", 0)
+        grid = Grid(findViewById(R.id.player_grid), estilo)
+        scrambler = Scrambler(findViewById(R.id.scrambler_grid), estilo)
         scrambler.scramble()
     }
 

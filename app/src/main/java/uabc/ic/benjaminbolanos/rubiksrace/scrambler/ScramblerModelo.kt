@@ -3,9 +3,9 @@ package uabc.ic.benjaminbolanos.rubiksrace.scrambler
 import uabc.ic.benjaminbolanos.rubiksrace.util.Color
 import uabc.ic.benjaminbolanos.rubiksrace.util.Dado
 
-class ScramblerModelo(var modoDaltonico: Boolean) {
+class ScramblerModelo() {
     private lateinit var dados: Array<Dado>
-    private var combinacion: Array<Color> = Array(9) { Color() }
+    private var combinacion: Array<Color> = Array(9) { Color("negro") }
 
 
     /**
@@ -20,7 +20,7 @@ class ScramblerModelo(var modoDaltonico: Boolean) {
      * tengan más de cuatro colores iguales.
      */
     fun scramble() {
-        dados = Array(9) { Dado(modoDaltonico) }
+        dados = Array(9) { Dado() }
         val contadoresColores: Array<Int> = Array(6) { 0 }
         var i = 0
         while (i < 9) {

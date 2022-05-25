@@ -31,8 +31,13 @@ class HighscoresActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_highscores)
+
+        val config = getSharedPreferences("config", Context.MODE_PRIVATE)
+        val estilo = config.getInt("estilo", 0)
+
         val recyclerView = findViewById<RecyclerView>(R.id.highscores_recycler_view)
         val adapter = HighscoreAdapter()
+        adapter.estilo = estilo
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         highscoreViewModel.orderedHighscores.observe(this){ highscores ->
