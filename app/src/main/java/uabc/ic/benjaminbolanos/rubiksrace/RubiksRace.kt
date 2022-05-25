@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.ContextMenu
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 
@@ -49,11 +50,27 @@ class RubiksRace() : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rubiksrace)
+        //setSupportActionBar(findViewById(R.id.rubiksrace_toolbar))
         setEstilo()
         iniciarBotones()
         crearMenus()
         cronometro.iniciar()
     }
+ /**
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.toolbar_opc_reglas -> {
+                //
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }*/
 
     private fun setEstilo(){
         val config = getSharedPreferences("config", Context.MODE_PRIVATE)

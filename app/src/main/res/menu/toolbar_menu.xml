@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/toolbar_opc_reglas"
+        android:title="Reglas"/>
+    <item android:id="@+id/toolbar_opc_reiniciar"
+        android:title="Reiniciar Juego"/>
+    <item android:id="@+id/toolbar_opc_color"
+        android:title="Cambiar colores"/>
+    <item android:id="@+id/toolbar_opc_historial"
+        android:title="Historial de Puntuaciones"/>
+    <item android:id="@+id/toolbar_opc_creditos"
+        android:title="Creditos"/>
+
+</menu>
