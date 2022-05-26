@@ -19,7 +19,10 @@ import android.widget.Button
 import android.widget.Toast
 
 import androidx.activity.viewModels
+import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 
 import uabc.ic.benjaminbolanos.rubiksrace.grid.Grid
 import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.*
@@ -27,7 +30,6 @@ import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.HighscoreViewModel
 import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.HighscoreViewModelFactory
 import uabc.ic.benjaminbolanos.rubiksrace.scrambler.Scrambler
 import uabc.ic.benjaminbolanos.rubiksrace.util.Cronometro
-import uabc.ic.benjaminbolanos.rubiksrace.util.EstiloCuadro
 
 class RubiksRace() : AppCompatActivity() {
 
@@ -44,19 +46,23 @@ class RubiksRace() : AppCompatActivity() {
     private lateinit var grid: Grid
 
     //Botones
-    private lateinit var scrambleButton:Button
+    //private lateinit var scrambleButton:Button
     private lateinit var slamButton: Button
+
+    //Toolbar
+    private lateinit var toolbar:Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rubiksrace)
-        //setSupportActionBar(findViewById(R.id.rubiksrace_toolbar))
+        toolbar = findViewById(R.id.rubiksrace_toolbar)
+        setSupportActionBar(toolbar)
         setEstilo()
         iniciarBotones()
         crearMenus()
         cronometro.iniciar()
     }
- /**
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
         return true
@@ -70,7 +76,7 @@ class RubiksRace() : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
-    }*/
+    }
 
     private fun setEstilo(){
         val config = getSharedPreferences("config", Context.MODE_PRIVATE)
@@ -81,12 +87,12 @@ class RubiksRace() : AppCompatActivity() {
     }
 
     private fun iniciarBotones(){
-        scrambleButton = findViewById(R.id.scramble_button)
+        //scrambleButton = findViewById(R.id.scramble_button)
         slamButton = findViewById(R.id.slam_button)
 
-        scrambleButton.setOnClickListener {
-            scrambler.scramble()
-        }
+        //scrambleButton.setOnClickListener {
+        //    scrambler.scramble()
+        //}
 
         slamButton.setOnClickListener {
             if(grid.hayGanador(scrambler.getCombinacion())){
@@ -165,11 +171,38 @@ class RubiksRace() : AppCompatActivity() {
         val fondo = findViewById<ConstraintLayout>(R.id.rubiksrace_layout)
         fondo.setBackgroundColor(colorSecundario)
 
-        scrambleButton.apply {
-            setTextColor(colorSecundario)
-            backgroundTintList = ColorStateList.valueOf(colorPrimario)
-            backgroundTintMode = PorterDuff.Mode.SRC_ATOP
+        toolbar.apply {
+            setBackgroundColor(colorPrimario)
+            title = ""
+            setTitleTextColor(colorPrimario)
+            ContextCompat.getDrawable(applicationContext,R.drawable.ic_options_menu_blanco)?.apply{
+                var newIcon = this.mutate()
+                newIcon = DrawableCompat.wrap(newIcon)
+                DrawableCompat.setTint(newIcon, colorSecundario)
+                DrawableCompat.setTintMode(newIcon, PorterDuff.Mode.SRC_IN)
+                overflowIcon = newIcon
+            }
+
+
+            //backgroundTintList = ColorStateList.valueOf(colorPrimario)
+            //backgroundTintMode = PorterDuff.Mode.SRC_ATOP
+
+            /*
+            overflowIcon = if(colorPrimario == resources.getColor(R.color.white,null)){
+                ContextCompat.getDrawable(applicationContext,R.drawable.ic_options_menu_blanco).apply {
+                    val newIcon = this.mutate()
+                }
+            } else {
+                ContextCompat.getDrawable(applicationContext,R.drawable.ic_options_menu_gris)
+            }*/
+
         }
+
+        //scrambleButton.apply {
+        //    setTextColor(colorSecundario)
+        //    backgroundTintList = ColorStateList.valueOf(colorPrimario)
+        //    backgroundTintMode = PorterDuff.Mode.SRC_ATOP
+        //}
 
         slamButton.apply {
             setTextColor(colorSecundario)
