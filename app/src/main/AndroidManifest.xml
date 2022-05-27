@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uabc.ic.benjaminbolanos.rubiksrace">
 
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".highscore_database.HighscoresApplication"
@@ -12,6 +12,12 @@
         android:roundIcon="@mipmap/ic_rubiks_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Practica3">
+        <activity
+            android:name=".Creditos"
+            android:exported="false" />
+        <activity
+            android:name=".Reglas"
+            android:exported="false" />
         <activity
             android:name=".highscores_view.HighscoresActivity"
             android:exported="false" />
@@ -32,4 +38,5 @@
             android:name=".RubiksRace"
             android:exported="false" />
     </application>
+
 </manifest>

@@ -28,8 +28,10 @@ import uabc.ic.benjaminbolanos.rubiksrace.grid.Grid
 import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.*
 import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.HighscoreViewModel
 import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.HighscoreViewModelFactory
+import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.HighscoresActivity
 import uabc.ic.benjaminbolanos.rubiksrace.scrambler.Scrambler
 import uabc.ic.benjaminbolanos.rubiksrace.util.Cronometro
+import uabc.ic.benjaminbolanos.rubiksrace.util.EstiloCuadro
 
 class RubiksRace() : AppCompatActivity() {
 
@@ -57,9 +59,9 @@ class RubiksRace() : AppCompatActivity() {
         setContentView(R.layout.activity_rubiksrace)
         toolbar = findViewById(R.id.rubiksrace_toolbar)
         setSupportActionBar(toolbar)
-        setEstilo()
+        getEstilo()
         iniciarBotones()
-        crearMenus()
+        registerForContextMenu(findViewById(R.id.rubiksrace_layout))
         cronometro.iniciar()
     }
 
@@ -71,14 +73,41 @@ class RubiksRace() : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             R.id.toolbar_opc_reglas -> {
-                //
+                val reglasIntent = Intent(this, Reglas::class.java)
+                startActivity(reglasIntent)
+                true
+            }
+            R.id.toolbar_opc_reiniciar -> {
+                reiniciarJuego()
+                true
+            }
+            R.id.toolbar_opc_color_1 -> {
+                setEstilo(EstiloCuadro.NORMAL)
+                true
+            }
+            R.id.toolbar_opc_color_2 -> {
+                setEstilo(EstiloCuadro.PASTEL)
+                true
+            }
+            R.id.toolbar_opc_color_3 -> {
+                setEstilo(EstiloCuadro.DALTONICO)
+                true
+            }
+            R.id.toolbar_opc_historial -> {
+                val highscoresIntent = Intent(applicationContext, HighscoresActivity::class.java)
+                startActivity(highscoresIntent)
+                true
+            }
+            R.id.toolbar_opc_creditos -> {
+                val creditosIntent = Intent(applicationContext, Creditos::class.java)
+                startActivity(creditosIntent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun setEstilo(){
+    private fun getEstilo(){
         val config = getSharedPreferences("config", Context.MODE_PRIVATE)
         val estilo = config.getInt("estilo", 0)
         grid = Grid(findViewById(R.id.player_grid), estilo)
@@ -86,13 +115,16 @@ class RubiksRace() : AppCompatActivity() {
         scrambler.scramble()
     }
 
-    private fun iniciarBotones(){
-        //scrambleButton = findViewById(R.id.scramble_button)
-        slamButton = findViewById(R.id.slam_button)
+    private fun setEstilo(nuevoEstilo: Int){
+        grid.cambiarEstilo(nuevoEstilo)
+        scrambler.cambiarEstilo(nuevoEstilo)
+        val config = getSharedPreferences("config", Context.MODE_PRIVATE)
+        val edit = config.edit()
+        edit.putInt("estilo", nuevoEstilo).apply()
+    }
 
-        //scrambleButton.setOnClickListener {
-        //    scrambler.scramble()
-        //}
+    private fun iniciarBotones(){
+        slamButton = findViewById(R.id.slam_button)
 
         slamButton.setOnClickListener {
             if(grid.hayGanador(scrambler.getCombinacion())){
@@ -106,6 +138,11 @@ class RubiksRace() : AppCompatActivity() {
         }
     }
 
+    private fun reiniciarJuego(){
+        scrambler.scramble()
+        grid.reiniciarGrid()
+    }
+
     private fun terminarJuego(){
         cronometro.parar()
         val newHighscore = Highscore(cronometro.tiempo, grid.getMovimientos(), scrambler.getCombinacion())
@@ -117,10 +154,6 @@ class RubiksRace() : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun crearMenus(){
-        registerForContextMenu(findViewById(R.id.rubiksrace_layout))
-    }
-
     override fun onCreateContextMenu( menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
         super.onCreateContextMenu(menu, v, menuInfo)
         val inflater = menuInflater
@@ -129,27 +162,17 @@ class RubiksRace() : AppCompatActivity() {
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
-        val preferences = getSharedPreferences("colores", Context.MODE_PRIVATE)
-        val editor = preferences.edit()
+
         return when(item.itemId){
             R.id.bgcolor_menu_item1 -> {
-                Toast.makeText(applicationContext, "Turquesa", Toast.LENGTH_SHORT).show()
-                editor.putInt("color_primario", resources.getColor(R.color.white,null))
-                editor.putInt("color_secundario",resources.getColor(R.color.fondo_turquesa,null)).apply()
                 cambiarColores(resources.getColor(R.color.white,null),resources.getColor(R.color.fondo_turquesa,null))
                 true
             }
             R.id.bgcolor_menu_item2 -> {
-                Toast.makeText(applicationContext, "Blanco", Toast.LENGTH_SHORT).show()
-                editor.putInt("color_primario", resources.getColor(R.color.fondo_gris_oscuro,null))
-                editor.putInt("color_secundario",resources.getColor(R.color.fondo_blanco,null)).apply()
                 cambiarColores(resources.getColor(R.color.fondo_gris_oscuro,null),resources.getColor(R.color.fondo_blanco,null))
                 true
             }
             R.id.bgcolor_menu_item3 -> {
-                Toast.makeText(applicationContext, "Gris Oscuro", Toast.LENGTH_SHORT).show()
-                editor.putInt("color_primario", resources.getColor(R.color.white,null))
-                editor.putInt("color_secundario",resources.getColor(R.color.fondo_gris_oscuro,null)).apply()
                 cambiarColores(resources.getColor(R.color.fondo_blanco,null),resources.getColor(R.color.fondo_gris_oscuro,null))
                 true
             }
@@ -168,6 +191,11 @@ class RubiksRace() : AppCompatActivity() {
     }
 
     private fun cambiarColores(colorPrimario:Int, colorSecundario:Int){
+        val preferences = getSharedPreferences("colores", Context.MODE_PRIVATE)
+        val editor = preferences.edit()
+        editor.putInt("color_primario", colorPrimario)
+        editor.putInt("color_secundario",colorSecundario).apply()
+
         val fondo = findViewById<ConstraintLayout>(R.id.rubiksrace_layout)
         fondo.setBackgroundColor(colorSecundario)
 
@@ -183,26 +211,7 @@ class RubiksRace() : AppCompatActivity() {
                 overflowIcon = newIcon
             }
 
-
-            //backgroundTintList = ColorStateList.valueOf(colorPrimario)
-            //backgroundTintMode = PorterDuff.Mode.SRC_ATOP
-
-            /*
-            overflowIcon = if(colorPrimario == resources.getColor(R.color.white,null)){
-                ContextCompat.getDrawable(applicationContext,R.drawable.ic_options_menu_blanco).apply {
-                    val newIcon = this.mutate()
-                }
-            } else {
-                ContextCompat.getDrawable(applicationContext,R.drawable.ic_options_menu_gris)
-            }*/
-
         }
-
-        //scrambleButton.apply {
-        //    setTextColor(colorSecundario)
-        //    backgroundTintList = ColorStateList.valueOf(colorPrimario)
-        //    backgroundTintMode = PorterDuff.Mode.SRC_ATOP
-        //}
 
         slamButton.apply {
             setTextColor(colorSecundario)

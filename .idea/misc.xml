@@ -3,22 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/bbola/AndroidStudioProjects/Practica3/app/src/main/res/layout/activity_creditos.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/bbola/AndroidStudioProjects/Practica3/app/src/main/res/layout/activity_highscores.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/bbola/AndroidStudioProjects/Practica3/app/src/main/res/layout/activity_highscores2.xml" value="0.35280797101449274" />
         <entry key="..\:/Users/bbola/AndroidStudioProjects/Practica3/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/bbola/AndroidStudioProjects/Practica3/app/src/main/res/layout/activity_rubiksrace.xml" value="0.34057971014492755" />
+        <entry key="..\:/Users/bbola/AndroidStudioProjects/Practica3/app/src/main/res/layout/activity_main_menu.xml" value="0.33" />
+        <entry key="..\:/Users/bbola/AndroidStudioProjects/Practica3/app/src/main/res/layout/activity_rubiksrace.xml" value="0.5" />
         <entry key="..\:/Users/bbola/AndroidStudioProjects/Practica3/app/src/main/res/layout/activity_winner.xml" value="0.2921195652173913" />
         <entry key="..\:/Users/bbola/AndroidStudioProjects/Practica3/app/src/main/res/layout/fragment_scrambler_view.xml" value="0.33" />
         <entry key="..\:/Users/bbola/AndroidStudioProjects/Practica3/app/src/main/res/layout/highscore_item.xml" value="0.5" />
+        <entry key="..\:/Users/bbola/AndroidStudioProjects/Practica3/app/src/main/res/layout/reglas_view.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/bbola/AndroidStudioProjects/Practica3/app/src/main/res/layout/scrambler_view.xml" value="0.33" />
-        <entry key="app/src/main/res/drawable/ic_options_menu_gris.xml" value="0.271" />
+        <entry key="..\:/Users/bbola/AndroidStudioProjects/Practica3/app/src/main/res/menu/background_color_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/bbola/AndroidStudioProjects/Practica3/app/src/main/res/menu/toolbar_menu.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/layout/activity_highscores.xml" value="0.496875" />
         <entry key="app/src/main/res/layout/activity_highscores2.xml" value="0.5182291666666666" />
         <entry key="app/src/main/res/layout/activity_highscores_cardview.xml" value="0.496875" />
-        <entry key="app/src/main/res/layout/activity_rubiksrace.xml" value="0.5182291666666666" />
         <entry key="app/src/main/res/layout/activity_winner.xml" value="0.24164133738601823" />
         <entry key="app/src/main/res/layout/highscore_item.xml" value="0.496875" />
-        <entry key="app/src/main/res/menu/toolbar_menu.xml" value="0.5182291666666666" />
       </map>
     </option>
   </component>

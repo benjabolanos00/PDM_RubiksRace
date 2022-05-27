@@ -40,6 +40,11 @@ class Grid(private val gridLayout: GridLayout, private var estilo: Int) {
         gridView.actualizar(gridModelo.cuadros, estilo)
     }
 
+    fun reiniciarGrid(){
+        gridModelo.crearGrid()
+        gridView.actualizar(gridModelo.cuadros, estilo)
+    }
+
     private fun realizarIntercambio(){
         gridModelo.intercambiar(seleccionesGrid[0],seleccionesGrid[1])
         gridView.actualizar(gridModelo.cuadros, estilo)

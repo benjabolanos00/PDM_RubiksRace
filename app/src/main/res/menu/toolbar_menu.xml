@@ -6,7 +6,23 @@
     <item android:id="@+id/toolbar_opc_reiniciar"
         android:title="Reiniciar Juego"/>
     <item android:id="@+id/toolbar_opc_color"
-        android:title="Cambiar colores"/>
+        android:title="Cambiar colores">
+        <menu>
+            <item
+                android:id="@+id/toolbar_opc_color_1"
+                android:title="Colores brillantes"
+                />
+            <item
+                android:id="@+id/toolbar_opc_color_2"
+                android:title="Colores Pastel"
+                />
+            <item
+                android:id="@+id/toolbar_opc_color_3"
+                android:title="Modo Daltonico"
+                />
+        </menu>
+
+    </item>
     <item android:id="@+id/toolbar_opc_historial"
         android:title="Historial de Puntuaciones"/>
     <item android:id="@+id/toolbar_opc_creditos"

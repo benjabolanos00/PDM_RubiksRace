@@ -19,4 +19,13 @@
     <string name="winner_time_holder">00:00:00</string>
     <string name="winner_newrecord">¡NUEVO RECORD!</string>
     <string name="winner_moves_holder">00 Movimientos</string>
+
+    <string name="regla_1">1. Puedes hacer Scramble las veces que quieras.</string>
+    <string name="regla_2">2. Para que un intercambio sea exitoso, este debe ser de un cuadro ocupado hacia uno desocupado.</string>
+    <string name="regla_3">3. Los 9 cuadros del centro del Grid deben coincidir con los 9 cuadros del Scrambler para poder ganar.</string>
+    <string name="regla_4">4. El tiempo no se reinicia al dar Scramble.</string>
+    <string name="regla_5">5. Si se intenta hacer Slam cuando no se ha ganado, el telefono vibrará</string>
+    <string name="regla_6">6. Cuando se haga Slam y la combinación sea correcta, se mostrará una ventana indicando los resultados.</string>
+
+
 </resources>
