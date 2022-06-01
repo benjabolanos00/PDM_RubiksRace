@@ -17,6 +17,7 @@ import androidx.core.view.size
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonToggleGroup
 import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.HighscoresActivity
+import uabc.ic.benjaminbolanos.rubiksrace.tutorial.Tutorial
 
 class MainMenu : AppCompatActivity() {
 
@@ -25,9 +26,14 @@ class MainMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
+
+        //Se registra el context menu
         registerForContextMenu(findViewById(R.id.main_menu_layout))
     }
 
+    /**
+     * Método que se ejecuta al resumir la actividad. Carga configuraciones y colores.
+     */
     override fun onResume() {
         super.onResume()
         setToggleGroup()
@@ -35,6 +41,9 @@ class MainMenu : AppCompatActivity() {
         setColores()
     }
 
+    /**
+     * Método que obtiene el estilo actual y selecciona el boton del grupo de ToggleButtons
+     */
     private fun setConfig(){
         val config = getSharedPreferences("config", Context.MODE_PRIVATE)
         if(config.contains("estilo")){
@@ -43,6 +52,9 @@ class MainMenu : AppCompatActivity() {
         }
     }
 
+    /**
+     * Método que toma el estilo actual y selecciona el boton de los ToggleButton
+     */
     private fun setToggleGroup(){
         toggleGroup = findViewById(R.id.main_menu_estilo_toggle_group)
         for(i in 0 until toggleGroup.size){
@@ -53,6 +65,9 @@ class MainMenu : AppCompatActivity() {
         }
     }
 
+    /**
+     * Método que tomar los colores de las preferencias y manda a cambiar los colores de la actividad
+     */
     private fun setColores(){
         val preferencias = getSharedPreferences("colores", Context.MODE_PRIVATE)
         if(preferencias.contains("color_secundario")) {
@@ -62,10 +77,14 @@ class MainMenu : AppCompatActivity() {
         }
     }
 
+    /**
+     * Metodo que cambia los colores del fondo y texto.
+     */
     private fun cambiarColores(colorPrimario:Int, colorSecundario:Int){
         val fondo = findViewById<ConstraintLayout>(R.id.main_menu_layout)
         val nuevoJuegoButton = findViewById<MaterialButton>(R.id.main_menu_new_game_button)
         val highscoresButton = findViewById<MaterialButton>(R.id.main_menu_highscores_button)
+        val tutorialButton = findViewById<MaterialButton>(R.id.main_menu_tutorial_button)
 
         for(b in toggleGroup){
             b as Button
@@ -78,6 +97,11 @@ class MainMenu : AppCompatActivity() {
             backgroundTintMode = PorterDuff.Mode.SRC_ATOP
         }
         highscoresButton.apply {
+            setTextColor(colorSecundario)
+            backgroundTintList = ColorStateList.valueOf(colorPrimario)
+            backgroundTintMode = PorterDuff.Mode.SRC_ATOP
+        }
+        tutorialButton.apply {
             setTextColor(colorSecundario)
             backgroundTintList = ColorStateList.valueOf(colorPrimario)
             backgroundTintMode = PorterDuff.Mode.SRC_ATOP
@@ -102,6 +126,9 @@ class MainMenu : AppCompatActivity() {
         startActivity(highscoresIntent)
     }
 
+    /**
+     * Método al crearse el context menu, utilizando el layout del 'background_color_menu'
+     */
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
         super.onCreateContextMenu(menu, v, menuInfo)
         val inflater = menuInflater
@@ -109,6 +136,10 @@ class MainMenu : AppCompatActivity() {
         inflater.inflate(R.menu.background_color_menu, menu)
     }
 
+    /**
+     * Método al escoger una opcion del menu contextual. Este cambia los colores de las preferencias
+     * y cambia los colores de la actividad
+     */
     override fun onContextItemSelected(item: MenuItem): Boolean {
         val preferences = getSharedPreferences("colores", Context.MODE_PRIVATE)
         val editor = preferences.edit()
@@ -133,5 +164,13 @@ class MainMenu : AppCompatActivity() {
             }
             else -> false
         }
+    }
+
+    /**
+     * Realiza un intent a la actividad Tutorial
+     */
+    fun goToTutorial(view: View){
+        val intent = Intent(this, Tutorial::class.java)
+        startActivity(intent)
     }
 }

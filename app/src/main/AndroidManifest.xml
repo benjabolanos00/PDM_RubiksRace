@@ -13,6 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Practica3">
         <activity
+            android:name=".tutorial.Tutorial"
+            android:exported="false"
+            android:label="@string/title_activity_tutorial"
+            android:theme="@style/Theme.Practica3.NoActionBar" />
+        <activity
             android:name=".Creditos"
             android:exported="false" />
         <activity

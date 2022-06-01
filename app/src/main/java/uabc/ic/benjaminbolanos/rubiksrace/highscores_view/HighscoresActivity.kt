@@ -32,12 +32,13 @@ class HighscoresActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_highscores)
 
+        //Se obtiene la configuración del estilo
         val config = getSharedPreferences("config", Context.MODE_PRIVATE)
         val estilo = config.getInt("estilo", 0)
 
         val recyclerView = findViewById<RecyclerView>(R.id.highscores_recycler_view)
         val adapter = HighscoreAdapter()
-        adapter.estilo = estilo
+        adapter.estilo = estilo //Se actualiza el estilo a utilizar
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         highscoreViewModel.orderedHighscores.observe(this){ highscores ->
@@ -59,6 +60,10 @@ class HighscoresActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Cuando se resume la actividad se obtienen los colores a utilizar en el fondo y en el texto
+     * y se actualizan.
+     */
     override fun onResume() {
         super.onResume()
         val preferencias = getSharedPreferences("colores", Context.MODE_PRIVATE)
@@ -69,6 +74,10 @@ class HighscoresActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Método para cambiar los colores del fondo y textos dependiendo de cual esté seleccionado
+     * en el momento.
+     */
     fun cambiarColores(colorPrimario:Int, colorSecundario:Int){
         val fondo = findViewById<ConstraintLayout>(R.id.highscores_layout)
         fondo.setBackgroundColor(colorSecundario)

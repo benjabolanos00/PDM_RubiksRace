@@ -4,11 +4,11 @@ package uabc.ic.benjaminbolanos.rubiksrace.util
  * Clase Dado que modela un dado de seis lados. Cada lado es un color distinto.
  */
 class Dado() {
-    private val colores:Array<Color> = arrayOf(
-        Color("azul"), Color("rojo"), Color("verde"),
-        Color("amarillo"), Color("morado"), Color("naranja")
+    private val colores:Array<Cuadro> = arrayOf(
+        Cuadro("azul"), Cuadro("rojo"), Cuadro("verde"),
+        Cuadro("amarillo"), Cuadro("morado"), Cuadro("naranja")
     )
-    private var caraVisible: Color
+    private var caraVisible: Cuadro
     private var caraInt:Int = 0
 
     /**
@@ -22,7 +22,7 @@ class Dado() {
      * Función tirar que genera un numero aleatorio y ,dependiendo de ese numero, se agarra un Color
      * del array de colores. Retorna el nuevo color/cara visible.
      */
-    fun tirar(): Color {
+    fun tirar(): Cuadro {
         val rand = java.util.Random()
         caraInt = rand.nextInt(6)
         caraVisible = colores[caraInt]
@@ -40,7 +40,7 @@ class Dado() {
     /**
      * Funcion que retorna el color de la cara visible.
      */
-    fun getCaraVisible(): Color {
+    fun getCaraVisible(): Cuadro {
         return caraVisible
     }
 }

@@ -16,6 +16,7 @@ import android.view.MenuItem
 import android.view.View
 
 import android.widget.Button
+import android.widget.GridLayout
 import android.widget.Toast
 
 import androidx.activity.viewModels
@@ -23,6 +24,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.fragment.app.DialogFragment
 
 import uabc.ic.benjaminbolanos.rubiksrace.grid.Grid
 import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.*
@@ -31,9 +33,9 @@ import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.HighscoreViewModelFact
 import uabc.ic.benjaminbolanos.rubiksrace.highscores_view.HighscoresActivity
 import uabc.ic.benjaminbolanos.rubiksrace.scrambler.Scrambler
 import uabc.ic.benjaminbolanos.rubiksrace.util.Cronometro
-import uabc.ic.benjaminbolanos.rubiksrace.util.EstiloCuadro
+import uabc.ic.benjaminbolanos.rubiksrace.util.Cuadro
 
-class RubiksRace() : AppCompatActivity() {
+class RubiksRace : AppCompatActivity() {
 
     //Cronometro
     private val cronometro = Cronometro()
@@ -61,43 +63,62 @@ class RubiksRace() : AppCompatActivity() {
         setSupportActionBar(toolbar)
         getEstilo()
         iniciarBotones()
+        crearDialog()
         registerForContextMenu(findViewById(R.id.rubiksrace_layout))
         cronometro.iniciar()
     }
 
+    fun crearDialog(){
+        val dialog: LoadingGame = LoadingGame.newInstance(scrambler.getCombinacion())
+        dialog.show(supportFragmentManager, "tag")
+        dialog.countDown()
+    }
+
+    /**
+     * Crea el menú del toolbar
+     */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
         return true
     }
 
+    /**
+     * Método que indica las acciones a realizar dependiendo del item seleccionado del menú
+     * de opciones (menú del toolbar)
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             R.id.toolbar_opc_reglas -> {
+                //Intent a la Activity de reglas
                 val reglasIntent = Intent(this, Reglas::class.java)
                 startActivity(reglasIntent)
                 true
             }
+            //Reinicia el juego
             R.id.toolbar_opc_reiniciar -> {
                 reiniciarJuego()
                 true
             }
+            //Se cambia el estilo de los cuadros
             R.id.toolbar_opc_color_1 -> {
-                setEstilo(EstiloCuadro.NORMAL)
+                setEstilo(Cuadro.ESTILO_NORMAL)
                 true
             }
             R.id.toolbar_opc_color_2 -> {
-                setEstilo(EstiloCuadro.PASTEL)
+                setEstilo(Cuadro.ESTILO_PASTEL)
                 true
             }
             R.id.toolbar_opc_color_3 -> {
-                setEstilo(EstiloCuadro.DALTONICO)
+                setEstilo(Cuadro.ESTILO_DALTONICO)
                 true
             }
+            //Intent a Activity de Highscores
             R.id.toolbar_opc_historial -> {
                 val highscoresIntent = Intent(applicationContext, HighscoresActivity::class.java)
                 startActivity(highscoresIntent)
                 true
             }
+            //Intent a Activity de Creditos
             R.id.toolbar_opc_creditos -> {
                 val creditosIntent = Intent(applicationContext, Creditos::class.java)
                 startActivity(creditosIntent)
@@ -115,6 +136,10 @@ class RubiksRace() : AppCompatActivity() {
         scrambler.scramble()
     }
 
+    /**
+     * Método que a partir del nuevo estilo, cambia los estilos del Scrambler y del Grid. También,
+     * guarda los estilos en las preferencias compartidas.
+     */
     private fun setEstilo(nuevoEstilo: Int){
         grid.cambiarEstilo(nuevoEstilo)
         scrambler.cambiarEstilo(nuevoEstilo)
@@ -138,6 +163,9 @@ class RubiksRace() : AppCompatActivity() {
         }
     }
 
+    /**
+     * Método que reinicia el juego al darle una vez al scramble y reiniciar la grid.
+     */
     private fun reiniciarJuego(){
         scrambler.scramble()
         grid.reiniciarGrid()
@@ -182,6 +210,10 @@ class RubiksRace() : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        getColores()
+    }
+
+    private fun getColores(){
         val preferencias = getSharedPreferences("colores", Context.MODE_PRIVATE)
         if(preferencias.contains("color_secundario")) {
             val colorSecundario = preferencias.getInt("color_secundario", R.color.fondo_turquesa)

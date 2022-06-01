@@ -2,8 +2,6 @@ package uabc.ic.benjaminbolanos.rubiksrace.highscore_database
 
 import androidx.annotation.WorkerThread
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
-import java.util.concurrent.Callable
 
 /**
  * Clase HighscoreRepository que abstrae el acceso a los datos de la base de datos. En este caso

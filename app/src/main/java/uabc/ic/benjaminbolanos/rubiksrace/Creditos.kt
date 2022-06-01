@@ -10,6 +10,9 @@ import androidx.core.view.get
 import androidx.core.view.size
 import org.w3c.dom.Text
 
+/**
+ * Actividad Creditos que muestra los credito de la aplicación.
+ */
 class Creditos : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +21,9 @@ class Creditos : AppCompatActivity() {
         obtenerColoresConfig()
     }
 
+    /**
+     * Método que obtiene los colores del fondo y texto y los manda a cambiar.
+     */
     fun obtenerColoresConfig(){
         val colores = getSharedPreferences("colores", Context.MODE_PRIVATE)
         if(colores.contains("color_primario")){
@@ -28,6 +34,9 @@ class Creditos : AppCompatActivity() {
 
     }
 
+    /**
+     * Método que obtiene los dos colores para fondo y texto y actualiza las views.
+     */
     fun setColores(colorPrimario: Int, colorSecundario: Int){
         val layout = findViewById<ConstraintLayout>(R.id.creditos_layout)
         layout.setBackgroundColor(colorSecundario)

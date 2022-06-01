@@ -1,11 +1,11 @@
 package uabc.ic.benjaminbolanos.rubiksrace.scrambler
 
-import uabc.ic.benjaminbolanos.rubiksrace.util.Color
+import uabc.ic.benjaminbolanos.rubiksrace.util.Cuadro
 import uabc.ic.benjaminbolanos.rubiksrace.util.Dado
 
 class ScramblerModelo() {
     private lateinit var dados: Array<Dado>
-    private var combinacion: Array<Color> = Array(9) { Color("negro") }
+    private var combinacion: Array<Cuadro> = Array(9) { Cuadro("negro") }
 
 
     /**
@@ -38,7 +38,7 @@ class ScramblerModelo() {
     /**
      * Método que consigue la combinación actual de colores y la retorna.
      */
-    fun getCombinacion(): Array<Color> {
+    fun getCombinacion(): Array<Cuadro> {
         return combinacion
     }
 }

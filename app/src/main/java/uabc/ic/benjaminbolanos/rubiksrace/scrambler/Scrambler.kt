@@ -1,8 +1,7 @@
 package uabc.ic.benjaminbolanos.rubiksrace.scrambler
 
 import android.widget.GridLayout
-import uabc.ic.benjaminbolanos.rubiksrace.util.Color
-import uabc.ic.benjaminbolanos.rubiksrace.util.EstiloCuadro
+import uabc.ic.benjaminbolanos.rubiksrace.util.Cuadro
 
 class Scrambler(scramblerGrid:GridLayout,private var estilo:Int) {
     private val scramblerView = ScramblerView(scramblerGrid)
@@ -15,15 +14,24 @@ class Scrambler(scramblerGrid:GridLayout,private var estilo:Int) {
         scramble()
     }
 
+    /**
+     * Método para cambiar el estilo de los cuadros
+     */
     fun cambiarEstilo(nuevoEstilo: Int){
         estilo = nuevoEstilo
         scramblerView.actualizar(scramblerModelo.getCombinacion(),estilo)
     }
 
+    /**
+     * Método que realiza el scramble en el modelo y lo actualiza en el view
+     */
     fun scramble(){
         scramblerModelo.scramble()
         scramblerView.actualizar(scramblerModelo.getCombinacion(), estilo)
     }
 
-    fun getCombinacion(): Array<Color> = scramblerModelo.getCombinacion()
+    /**
+     * Getter para la combinación
+     */
+    fun getCombinacion(): Array<Cuadro> = scramblerModelo.getCombinacion()
 }

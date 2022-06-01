@@ -1,27 +1,36 @@
 package uabc.ic.benjaminbolanos.rubiksrace.util
 
-import android.util.Log
 import kotlinx.serialization.Serializable
 import uabc.ic.benjaminbolanos.rubiksrace.R
 import kotlin.random.Random
 
 @Serializable
-class Color(var nombre: String) {
-    private var estiloActual = EstiloCuadro.NORMAL
+class Cuadro(var nombre: String) {
+    //Determina el estilo del cuadro a mostrar
+    private var estiloActual = ESTILO_NORMAL
 
+    /**
+     * Retorna el valor/id de la imagen del cuadro dependiendo del estilo deseado.
+     * @param estilo Estilo con el que se mostrará el cuadro (Vea constantes de estilo)
+     * @return ID de Drawable del Cuadro con color y estilo indicado.
+     */
     fun getValor(estilo:Int): Int{
         estiloActual = estilo
         return when(estiloActual){
-            EstiloCuadro.NORMAL -> getNormal()
-            EstiloCuadro.DALTONICO -> getDaltonico()
-            EstiloCuadro.PASTEL -> getPastel()
+            ESTILO_NORMAL -> getNormal()
+            ESTILO_DALTONICO -> getDaltonico()
+            ESTILO_PASTEL -> getPastel()
             else -> 0
         }
     }
 
+    /**
+     * Retorna el valor/id del cuadro en su forma seleccionada (marco amarillo).
+     * @return ID de Drawable del Cuadro en su forma seleccionado.
+     */
     fun getSelected(): Int{
         return when(estiloActual){
-            EstiloCuadro.NORMAL ->{
+            ESTILO_NORMAL ->{
                 when(nombre){
                     "azul" -> R.drawable.cuadro_azul_selected
                     "rojo" -> R.drawable.cuadro_rojo_selected
@@ -32,7 +41,7 @@ class Color(var nombre: String) {
                     else -> R.drawable.cuadro_negro_selected
                 }
             }
-            EstiloCuadro.DALTONICO-> {
+            ESTILO_DALTONICO-> {
                 when(nombre){
                     "azul" -> R.drawable.cuadro_azul_daltonico_selected
                     "rojo" -> R.drawable.cuadro_rojo_daltonico_selected
@@ -43,7 +52,7 @@ class Color(var nombre: String) {
                     else -> R.drawable.cuadro_negro_selected
                 }
             }
-            EstiloCuadro.PASTEL -> {
+            ESTILO_PASTEL -> {
                 return when(nombre){
                     "azul" -> R.drawable.cuadro_azul_pastel_selected
                     "rojo" -> R.drawable.cuadro_rojo_pastel_selected
@@ -58,6 +67,10 @@ class Color(var nombre: String) {
         }
     }
 
+    /**
+     * Método para obtener el ID del Drawable de cuadro en estilo normal dependiendo del nombre.
+     * @return ID de drawable de cuadro en estilo normal.
+     */
     private fun getNormal(): Int{
         return when(nombre){
             "azul" -> R.drawable.cuadro_azul
@@ -70,6 +83,10 @@ class Color(var nombre: String) {
         }
     }
 
+    /**
+     * Método para obtener el ID del Drawable de cuadro en estilo para daltonicos dependiendo del nombre.
+     * @return ID de drawable de cuadro en estilo para daltonicos.
+     */
     private fun getDaltonico(): Int{
         return when(nombre){
             "azul" -> R.drawable.cuadro_azul_daltonico
@@ -82,6 +99,10 @@ class Color(var nombre: String) {
         }
     }
 
+    /**
+     * Método para obtener el ID del Drawable de cuadro en estilo pastel dependiendo del nombre.
+     * @return ID de drawable de cuadro en estilo pastel.
+     */
     private fun getPastel(): Int{
         return when(nombre){
             "azul" -> R.drawable.cuadro_azul_pastel
@@ -96,21 +117,26 @@ class Color(var nombre: String) {
 
     companion object{
         /**
-         * Método que retorna un color aleatorio. El color negro no puede salir.
+         * Método que retorna un cuadro aleatorio. El color negro no puede salir.
          */
-        fun randomColor(): Color{
+        fun randomColor(): Cuadro{
             return when(Random.nextInt(0,6)){
-                0 -> Color("azul")
-                1 -> Color("rojo")
-                2 -> Color("verde")
-                3 -> Color("amarillo")
-                4 -> Color("morado")
-                5 -> Color("naranja")
+                0 -> Cuadro("azul")
+                1 -> Cuadro("rojo")
+                2 -> Cuadro("verde")
+                3 -> Cuadro("amarillo")
+                4 -> Cuadro("morado")
+                5 -> Cuadro("naranja")
                 else ->{
-                    Color("negro")
+                    Cuadro("negro")
                 }
             }
         }
+
+        // Valores de los tres diferentes estilos de cuadro
+        const val ESTILO_NORMAL = 0
+        const val ESTILO_PASTEL = 1
+        const val ESTILO_DALTONICO = 2
     }
 
 }

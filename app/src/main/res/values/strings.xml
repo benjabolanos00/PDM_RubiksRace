@@ -26,6 +26,19 @@
     <string name="regla_4">4. El tiempo no se reinicia al dar Scramble.</string>
     <string name="regla_5">5. Si se intenta hacer Slam cuando no se ha ganado, el telefono vibrará</string>
     <string name="regla_6">6. Cuando se haga Slam y la combinación sea correcta, se mostrará una ventana indicando los resultados.</string>
+    <string name="title_activity_tutorial">Tutorial</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 
+    <string name="tutorial_p0_1">El Scrambler dicta la combinación a recrear.</string>
+    <string name="tutorial_p0_2">Puedes cambiar la combinacion del Scrambler al pulsar sobre el.</string>
+
+    <string name="tutorial_p1_1">El objetivo del juego es recrear la combinacion del Scramble en el centro del Grid (cuadros morados).</string>
+    <string name="tutorial_p1_2">El espacio negro indica que no hay un cuadro en ese lugar. Solo puedes mover fichas que estén pegadas a este espacio.</string>
+    <string name="tutorial_p1_3">Para mover un cuadro, seleccionalo y seguido pulsa sobre el espacio negro.</string>
+
+    <string name="tutorial_p2_1">Cuando termines, pulsa el boton:</string>
+    <string name="tutorial_p2_2">Si la combinación es correcta, te mandará a una pantalla con los resultados.</string>
+    <string name="tutorial_p2_3">Si no, el telefono vibrará y podras seguir moviendo los cuadros.</string>
 
 </resources>

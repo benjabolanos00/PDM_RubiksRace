@@ -1,7 +1,7 @@
 package uabc.ic.benjaminbolanos.rubiksrace.highscore_database
 
 import androidx.room.ColumnInfo
-import uabc.ic.benjaminbolanos.rubiksrace.util.Color
+import uabc.ic.benjaminbolanos.rubiksrace.util.Cuadro
 import kotlin.math.roundToInt
 import kotlin.random.Random
 import androidx.room.Entity
@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey
 data class Highscore(
     @ColumnInfo(name = "tiempo") val tiempo:Double,
     @ColumnInfo(name = "movimientos") val movimientos:Int,
-    @ColumnInfo(name = "combinacion") val combinacionColores: Array<Color>){
+    @ColumnInfo(name = "combinacion") val combinacionColores: Array<Cuadro>){
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id = 0
 
     override fun toString(): String{
@@ -68,7 +68,7 @@ data class Highscore(
      */
     companion object{
         fun random(): Highscore {
-            val comb = Array(9){ Color.randomColor() }
+            val comb = Array(9){ Cuadro.randomColor() }
             val t:Double = Random.nextDouble(360.0)
             val movs:Int = Random.nextInt(250)
             return Highscore(t, movs, comb)

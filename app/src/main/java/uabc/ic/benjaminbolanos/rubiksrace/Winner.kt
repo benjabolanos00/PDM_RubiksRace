@@ -25,6 +25,8 @@ class Winner : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
+        //Se obtienen los colores que se están utilizando
         val preferencias = getSharedPreferences("colores", Context.MODE_PRIVATE)
         if(preferencias.contains("color_secundario")){
             val colorSecundario = preferencias.getInt("color_secundario", R.color.fondo_turquesa)
@@ -33,6 +35,9 @@ class Winner : AppCompatActivity() {
         }
     }
 
+    /**
+     * Método que cambia los colores del fondo y textos.
+     */
     fun cambiarColores(colorPrimario: Int, colorSecundario:Int){
         movesText.setTextColor(colorPrimario)
         timeText.setTextColor(colorPrimario)

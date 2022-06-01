@@ -8,6 +8,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.get
 import androidx.core.view.size
 
+/**
+ * Actividad que muestra las reglas del juego.
+ */
 class Reglas : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,6 +19,10 @@ class Reglas : AppCompatActivity() {
         obtenerColoresConfig()
     }
 
+    /**
+     * Método que obtiene la configuracion de los colores y manda a cambiar los colores de la
+     * actividad
+     */
     fun obtenerColoresConfig(){
         val colores = getSharedPreferences("colores",Context.MODE_PRIVATE)
         if(colores.contains("color_primario")){
@@ -26,6 +33,9 @@ class Reglas : AppCompatActivity() {
 
     }
 
+    /**
+     * Método que cambia los colores del fondo y textos
+     */
     fun setColores(colorPrimario: Int, colorSecundario: Int){
         val layout = findViewById<ConstraintLayout>(R.id.reglas_layout)
         for(i in 0 until layout.size){

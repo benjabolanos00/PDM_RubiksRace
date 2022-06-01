@@ -9,6 +9,23 @@
     android:id="@+id/main_menu_layout">
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/main_menu_tutorial_button"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/white"
+        android:onClick="goToTutorial"
+        android:text="Como jugar"
+        android:textColor="@color/fondo_turquesa"
+        android:textStyle="bold"
+        app:cornerRadius="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.725" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/main_menu_new_game_button"
         android:layout_width="150dp"
         android:layout_height="60dp"
@@ -16,6 +33,7 @@
         android:onClick="newGame"
         android:text="@string/main_menu_new_game"
         android:textColor="@color/fondo_turquesa"
+        android:textStyle="bold"
         app:cornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,6 +50,7 @@
         android:onClick="goToHighscores"
         android:text="@string/main_menu_highscores"
         android:textColor="@color/fondo_turquesa"
+        android:textStyle="bold"
         app:cornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73"
+        app:layout_constraintVertical_bias="0.83"
         app:singleSelection="true"
         app:selectionRequired="true"
         app:checkedButton="@+id/main_menu_estilo_toggle_1">

@@ -18,10 +18,14 @@ import uabc.ic.benjaminbolanos.rubiksrace.highscore_database.Highscore
 class HighscoreAdapter : ListAdapter<Highscore, HighscoreAdapter.HighscoreViewHolder>(
     HighscoreComparator()
 ) {
+    /**
+     * La variable estilo va a indicar con que estilo se mostrarán los Highscores (normal, daltonico
+     * o postel)
+     */
     var estilo:Int = 2
 
     /**
-     * Metodo en el cual se crea ek Holder
+     * Metodo en el cual se crea el Holder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HighscoreViewHolder {
         return HighscoreViewHolder.create(parent, estilo)
@@ -60,6 +64,7 @@ class HighscoreAdapter : ListAdapter<Highscore, HighscoreAdapter.HighscoreViewHo
          */
         fun bind(highscoreItem: Highscore) {
             for(i in 0..8){
+                //Al obtener el cuadro, se obtendrá el cuadro con el estilo recibido en el adapter.
                 highscoreItem.combinacionColores[i].let { highscoreCombinacion[i].setImageResource(it.getValor(estilo)) }
                 Log.i("HS", "Valor es ${highscoreItem.combinacionColores[i].getValor(estilo)}")
             }

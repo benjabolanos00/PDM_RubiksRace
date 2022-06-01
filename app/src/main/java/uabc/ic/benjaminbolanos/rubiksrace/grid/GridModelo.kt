@@ -1,15 +1,15 @@
 package uabc.ic.benjaminbolanos.rubiksrace.grid
 
-import uabc.ic.benjaminbolanos.rubiksrace.util.Color
+import uabc.ic.benjaminbolanos.rubiksrace.util.Cuadro
 
 /**
  * Clase GridModelo que modela un grid de un jugador de RubiksRace.
  */
 class GridModelo() {
-    val cuadros:Array<Color> = Array(25){ Color("negro") }
-    private val colores:Array<Color> = arrayOf(
-        Color("azul"), Color("rojo"), Color("verde"),
-        Color("amarillo"), Color("morado"), Color("naranja")
+    val cuadros:Array<Cuadro> = Array(25){ Cuadro("negro") }
+    private val colores:Array<Cuadro> = arrayOf(
+        Cuadro("azul"), Cuadro("rojo"), Cuadro("verde"),
+        Cuadro("amarillo"), Cuadro("morado"), Cuadro("naranja")
     )
     var movimientos:Int = 0
 
@@ -74,7 +74,7 @@ class GridModelo() {
             }
             i++
         }
-        cuadros[i] = Color("negro")
+        cuadros[i] = Cuadro("negro")
     }
 
     /**
@@ -82,9 +82,9 @@ class GridModelo() {
      * Array.
      * @return un Array<Color> de los 9 cuadros del centro.
      */
-    fun getCentro():Array<Color>{
+    fun getCentro():Array<Cuadro>{
         var j = 0
-        val centro:Array<Color> = Array(9){ Color("negro") }
+        val centro:Array<Cuadro> = Array(9){ Cuadro("negro") }
         for(i in 0..24){
             if(i in 6..18 && i%5!=0 && (i+1)%5!=0){
                 centro[j] = cuadros[i]

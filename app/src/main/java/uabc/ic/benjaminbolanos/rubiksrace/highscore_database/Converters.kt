@@ -1,7 +1,7 @@
 package uabc.ic.benjaminbolanos.rubiksrace.highscore_database
 
 import androidx.room.TypeConverter
-import uabc.ic.benjaminbolanos.rubiksrace.util.Color
+import uabc.ic.benjaminbolanos.rubiksrace.util.Cuadro
 
 /**
  * Clase Converters que contiene los convertidores de datos para poder guardar los resultados
@@ -13,11 +13,11 @@ class Converters {
      * Convierte un String en un Array de Colores
      */
     @TypeConverter
-    fun fromString(value: String): Array<Color>{
+    fun fromString(value: String): Array<Cuadro>{
         val values = value.split(",")
-        val colores = Array(values.size){Color("negro")}
+        val colores = Array(values.size){Cuadro("negro")}
         for(i in values.indices){
-            colores[i] = Color(values[i])
+            colores[i] = Cuadro(values[i])
         }
         return colores
     }
@@ -26,7 +26,7 @@ class Converters {
      * Convierte un Array de Colores en un String
      */
     @TypeConverter
-    fun colorArrayToString(colores: Array<Color>): String{
+    fun colorArrayToString(colores: Array<Cuadro>): String{
         var value = ""
 
         for(color in colores){

@@ -24,15 +24,17 @@
         android:id="@+id/slam_button"
         android:layout_width="354dp"
         android:layout_height="67dp"
+        android:backgroundTint="@color/white"
         android:text="@string/slam"
+        android:textColor="@color/fondo_turquesa"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:cornerRadius="1000dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/fondo_turquesa"/>
+        app:layout_constraintVertical_bias="0.95" />
 
     <GridLayout
         android:id="@+id/player_grid"
@@ -296,7 +298,6 @@
         android:rowCount="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.15">
